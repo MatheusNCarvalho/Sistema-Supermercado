@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+<!--  Add o thymelead -->
+<head>
+<title>Cadastro de Produto</title>
+</head>
+
+
+<section layout:fragment="conteudo">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div layout:include="menu"></div>
+			<div class="span9" id="content">
+
+				<div class="row-fluid">
+					<div class="block">
+						<!--  barra acima do form -->
+						<div class="navbar navbar-inner block-header">
+							<!-- Barra de opções no final da div -->
+							<div class="btn-group pull-right">
+								<button data-toggle="dropdown" class="btn dropdown-toggle">
+									Tools <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="#">Print</a></li>
+									<li><a href="#">Save as PDF</a></li>
+									<li><a href="#">Export to Excel</a></li>
+								</ul>
+							</div>
+
+							<!--Botao no estilo do template -->
+							<div class="btn-group">
+								<a th:href="@{/categorias/novo}"><button
+										class="btn btn-success">
+										Cadastrar Categoria <i class="icon-plus icon-white"></i>
+									</button></a>
+							</div>
+							<div class="btn-group pull-right">
+								<a th:href="@{/produtos}"><button class="btn btn-deafult">
+										<i class="fa fa-caret-left"></i> Voltar para Produtos
+									</button></a>
+							</div>
+
+
+						</div>
+
+						<div class="block-content collapse in">
+							<div class="span12">
+								<form name="formProduto" class="form-horizontal" method="POST" onsubmit="return validaFormCadProduto()" action="/produtos" th:object="${produto}">
+								<div layout:include="Mensagem"></div>
+									<fieldset>
+										<legend>Cadastro de Produtos</legend>
+										
+										<input type="hidden" th:field="*{id}"/>
+										
+										<div class="control-group" th:classappend="${#fields.hasErrors('codigoBarras')} ? has-error">
+											<label class="control-label" for="focusedCodigoBarra">Codigo
+												de Barras</label>
+												
+											<div class="controls">
+												<input class="input-xlarge focused" id="focusedCodigoBarra" type="text" th:field="*{codigoBarras}"/>
+													
+											</div>
+
+										</div>
+										<div class="control-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
+											<label class="control-label" for="focusedNome">Nome</label>
+											<div class="controls">
+												<input class="input-xlarge focused" id="focusedNome" type="text" th:field="*{nome}" />
+											</div>
+										</div>
+										
+										<div class="control-group" th:classappend="${#fields.hasErrors('tipoMedida')} ? has-error">
+											<label class="control-label" for="focusCategoria">Medida</label>
+											<div class="controls">
+												<select class="form-control" id="focusCategoria"
+													name="tipoMedida" onchange="cadastroProdutoSelect()">
+													<option ></option>
+													<option value="KG">Kilo</option>
+													<option value="LT">Litro</option>
+												</select>
+										
+											</div>
+										</div>
+										<div class="control-group" th:classappend="${#fields.hasErrors('qtdMedida')} ? has-error">
+											<label class="control-label" for="focusedNome">Quantidade Medida</label>
+											<div class="controls">
+												<input class="input-xlarge focused" id="focusedNome" type="text" th:field="*{qtdMedida}" />
+											</div>
+										</div>
+										<div class="control-group" th:classappend="${#fields.hasErrors('qtdMaxima')} ? has-error">
+											<label class="control-label" for="focusedQuantidadeEstoque">Quantidade
+												Estoque Maximo</label>
+											<div class="controls">
+												<input class="input-xlarge focused"
+													id="focusedQuantidadeEstoque" type="text" th:field="*{qtdMaxima}" />
+											</div>
+										</div>
+										<div class="control-group" th:classappend="${#fields.hasErrors('qtdMinimo')} ? has-error">
+											<label class="control-label"
+												for="focusedQuantidadeEstoqueMin">Quantidade Estoque
+												Minimo</label>
+											<div class="controls">
+												<input class="input-xlarge focused"
+													id="focusedQuantidadeEstoqueMin" type="text"
+													th:field="*{qtdMinimo}"/>
+											</div>
+										</div>
+										<div class="control-group" th:classappend="${#fields.hasErrors('idCategoria')} ? has-error">
+											<label class="control-label" for="focusCategoria">Categoria</label>
+											<div class="controls">
+												<select class="form-control" id="focusCategoria"
+													name="idCategoria" onchange="cadastroProdutoSelect()">
+													<option></option>
+													<!-- Comando para criar uma lista de categoria -->
+													<option th:each="categoria : ${categorias}"
+														th:value="${categoria.id}" th:text="${categoria.nome}"></option>
+
+												</select>
+												<div class="btn-group">
+													<a th:href="@{/categorias/novo}"><button type="button"
+															class="btn btn-success">
+															Nova Categoria <i class="icon-plus icon-white"></i>
+														</button></a>
+												</div>
+
+											</div>
+										</div>
+
+
+										<div class="form-actions">
+											<button type="submit" class="btn btn-primary">Save
+												changes</button>
+											<button type="reset" class="btn">Cancel</button>
+										</div>
+									</fieldset>
+									<script src="/js/validacao.js"></script>
+								</form>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</section>
+
+</html>

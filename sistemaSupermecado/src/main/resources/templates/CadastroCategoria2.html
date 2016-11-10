@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+<!--  Add o thymelead -->
+<head>
+<title>Cadastrar Categoria</title>
+</head>
+<section layout:fragment="conteudo">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div layout:include="menu"></div>
+			<div class="span9" id="content">
+				<div class="row-fluid">
+					<!-- add o codigo das paginas apartit daqui -->
+					<div class="block">
+						<div class="navbar navbar-inner block-header">
+
+							<div class="muted pull-left ">Form Example</div>
+
+
+							<div class="muted pull-left"></div>
+
+						</div>
+						<div class="block-content collapse in">
+							<div class="span12">
+								<form name="formCategoria" class="form-horizontal" method="POST" onsubmit=" return validaFormCadCategoria()" action="/categorias">
+									<fieldset>
+										<legend>Cadastrar Categoria</legend>
+										<div class="control-group">
+											<label class="control-label" for="nome">Nome</label>
+											<div class="controls">
+												<input class="input-xlarge focused" id="nome" type="text"
+													name="nome" />
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="descricao">Descrição</label>
+											<div class="controls">
+												<input type="text" class="input-xlarge focused"
+													id="descricao" name="descricao" /> <a
+													class="btn btn-link btn-xs"> <span
+													class="glyphicon glyphicon-pencil"></span>
+												</a>
+											</div>
+										</div>
+										<div class="form-actions">
+											<button type="submit" class="btn btn-primary">Salvar</button>
+											<button type="reset" class="btn">Cancel</button>
+										</div>
+									</fieldset>
+									<script src="/js/validacao.js"></script>
+								</form>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+</html>

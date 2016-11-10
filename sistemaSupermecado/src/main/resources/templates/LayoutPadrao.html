@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"><!--  Add o thymelead -->
+<head>
+	<meta charset="UTF-8"/>
+	<title>Supermecado</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-responsive.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/jquery.easy-pie-chart.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/font-awesome.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/DT_bootstrap.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/styles1.css}"/>
+	<script src="/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+	
+</head>
+<body>
+		<head  layout:include="Cabecalho"></head>
+		<section  layout:fragment="conteudo">	
+			<p>Conteúdo principal</p>
+		</section>
+		
+		
+		
+	<script src="/js/jquery-1.9.1.min.js"></script>
+	<script src="/js/jquery.dataTables.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/DT_bootstrap.js"></script>
+	<script src="/js/jquery.easy-pie-chart.js"></script>	
+	<script src="/js/scripts.js"></script>
+	<script>
+        $(function() {
+            // Easy pie charts
+            $('.chart').easyPieChart({animate: 1000});
+        });
+ </script>		
+</body>
+</html>

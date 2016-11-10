@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	xmlns:brewer="http://brewer.algaworks.com"
+	layout:decorator="layout/LayoutPadrao">
+
+<head>
+	<title>SYSMARKET</title>
+</head>
+<body>
+	<section layout:fragment="conteudo">
+		<div class="page-header">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xs-10">
+						<h1>
+							Pesquisa de fornecedores
+						</h1>
+					</div>
+					
+					<div class="col-xs-2">
+						<div class="aw-page-header-controls">
+							<a class="btn btn-primary" th:href="@{/fornecedores/novo}">
+								<i class="fa  fa-plus-circle"></i> <span class="hidden-xs  hidden-sm">Novo Fornecedor</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="container-fluid">
+			<form method="POST" class="form-vertical  js-form-loading">
+				
+				<div class="form-group">
+					<label for="input-produto-nome">Nome</label>
+					<input id="input-produto-nome" type="text" class="form-control"/>
+				</div>
+		
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="input-produto-preco">CNPJ</label>							
+							<div class="form-inline">
+								<input type="text" class="form-control  aw-form-control-inline-sm" placeholder=""/>								
+							</div>
+						</div>
+					</div>			
+					
+				</div>
+				
+			    <div class="form-group">
+					<button class="btn  btn-primary" type="submit">
+						Pesquisar
+					</button>
+			    </div> 
+	
+				<div class="table-responsive">
+					<table id="tabela-produtos" class="table  table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
+						<thead class="aw-table-header-solid">
+							<tr>
+								<th class="col-md-1 aw-table-checkbox">
+									<input type="checkbox"/>
+								</th>
+								<th>Nome</th>
+								<th class="text-center col-md-2">CNPJ</th>
+								<th class="text-center col-md-2">Telefone</th>
+								<th class="col-md-1"></th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="fo : ${fornecedores}">
+								<td class="aw-table-checkbox"><input type="checkbox"/></td>
+								<td th:text="${fo.nome}"></td>
+								<td class="text-center" th:text="${fo.cnpj}"></td>
+								<td class="text-center" th:text="${fo.telefone}"></td>								
+								<td class="text-center">
+								
+									
+										<a class="btn btn-link btn-xs" th:href="@{/fornecedores/{codigo}(codigo=${fo.idFornecedor})}"
+											th:attr= "data-codigo=${fo.idFornecedor}"><!--Aqui usamos o data-codigo para que o codigo fica disponivel para nosso javascript
+											 e usamos o th:attr para o thymelead entender -->
+											<span class="glyphicon glyphicon-pencil"></span>
+										</a>
+										
+										<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoModal">
+											<span class="glyphicon glyphicon-remove"></span>										
+										</a>
+										
+										
+									
+									
+								</td>
+							</tr>
+							<tr>
+								<td colspan="6" th:if="${#lists.isEmpty(fornecedores)}">Nenhum fornecedor foi encontrado</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>		
+			</form>		
+		</div>
+	</section>
+</body>
+</html>

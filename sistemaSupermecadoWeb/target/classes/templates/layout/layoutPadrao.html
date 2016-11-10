@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+	<title>SysMarket</title>
+
+	<link rel="stylesheet" type="text/css" th:href="@{/css/vendors.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/algaworks.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/application.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/brewer.css}"/>
+	<!-- <link rel="stylesheet" type="text/css" th:href="@{/stylesheets/brewer.css}"/> -->
+		<script th:src="@{/js/jquery-3.1.1.min.js}"></script>
+	
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	
+</head>
+<body>
+	<!-- DIV responsavel por adicionar Menu, Cabeçalho nas paginas -->
+	<div class="aw-layout-page">
+		<div th:replace="layout/fragments/BarraNavegacao :: navbar"></div>
+		<div th:replace="layout/fragments/MenuLateral :: layout-sidebar"></div>
+		<section class="aw-layout-content  js-content" layout:fragment="conteudo"></section>
+	
+	</div>
+	<!-- \\\\\\\ \\\\\\ \\\\\\\\\\\\\\\\\\\\\\\\\  -->
+	
+		<div class="aw-search-modal  js-search-modal">
+			<form action="#" class="aw-search-modal__form">
+				<input class="aw-search-modal__input  js-search-modal-input" type="text" placeholder="O que você está procurando?"/>
+				<div class="aw-search-modal__input-icon">
+					<i class="glyphicon  glyphicon-search  js-search-modal-go"></i>
+				</div>
+			</form>
+			
+			<div class="aw-search-modal__controls">
+				<i class="glyphicon glyphicon-remove  js-search-modal-close"></i>
+			</div>
+		</div>
+	<script th:src="@{/js/javascript.js}"></script>
+	<script th:src="@{/js/vendors.min.js}"></script>
+	<script th:src="@{/js/algaworks.min.js}"></script>
+	<script th:src="@{/js/supermercado.js}"></script>
+
+</body>
+
+</html>	

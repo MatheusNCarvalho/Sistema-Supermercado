@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	xmlns:brewer="http://brewer.algaworks.com"
+	layout:decorator="layout/LayoutPadrao">
+
+<head>
+	<title>SYSMARKET</title>
+</head>
+<body>
+	<section layout:fragment="conteudo">
+		<div class="page-header">
+			<div class="container-fluid">
+				<h1>
+					Cadastro de Fornecedor
+				</h1>
+			</div>
+		</div>	
+
+		<div class="container-fluid">
+			
+			<form method="POST" class="form-vertical  js-form-loading" action="/fornecedores" th:object="${fornecedor}" >
+				<div layout:include="layout/mensagemGeral">
+				</div>
+				<div layout:include="layout/mensagemErro">
+				</div>	
+				  <input type="hidden" th:field="*{idFornecedor}"/>	 	 
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
+							<label for="nome">Nome</label> 																		
+							<input id="nome" type="text"  class="form-control" placeholder="Digite o Nome da Empresa" th:field="*{nome}" />
+
+						</div>																						
+					</div>
+					
+					<div class="col-sm-3">
+						<div class="form-group" th:classappend="${#fields.hasErrors('cnpj')} ? has-error">
+							<label for="cnpj" >CNPJ</label>
+							<input id="cnpj" type="text" class="form-control" placeholder="CNPJ" th:field="*{cnpj}"/>			
+						</div>
+					</div>
+					
+					<div class="col-sm-3">
+						<div class="form-group" th:classappend="${#fields.hasErrors('telefone')} ? has-error">
+							<label for="input-cnpj">Telefone</label>
+							<input id="input-cnpj" type="text" class="form-control" placeholder="Seu Contato" th:field="*{telefone}"/>						
+
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="input-lograduro">Logradouro</label>
+
+							<input id="input-lograduro" type="text" placeholder="Digite o Logradouro" class="form-control"  th:field="*{logradouro}"/>
+
+							
+
+						</div>
+					</div>
+					
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="input-bairro">Bairro</label>
+							<input id="input-bairro" type="text" class="form-control" placeholder="Digite o bairro" th:field="*{bairro}"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group" th:classappend="${#fields.hasErrors('cidade')} ? has-error">
+							<label for="input-cidade">Cidade</label>
+							<input id="input-cidade" type="text"  class="form-control" placeholder="Digite a Cidade" th:field="*{cidade}"/>
+						</div>
+					</div>
+					
+					<div class="col-sm-3">
+						<div class="form-group" th:classappend="${#fields.hasErrors('estado')} ? has-error">
+							<label for="input-estado">Estado</label>
+							<input id="input-estado" type="text" class="form-control" placeholder="Digite o Estado" th:field="*{estado}"/>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="input-pais">Pais</label>
+							<input id="input-pais" type="text"  class="form-control" placeholder="Digite o Pais" th:field="*{pais}"/>
+						</div>
+					</div>
+					
+					<div class="col-sm-3">
+						<div class="form-group" th:classappend="${#fields.hasErrors('cep')} ? has-error">
+							<label for="input-cep">CEP</label>
+							<input id="input-cep" type="text" class="form-control" placeholder="CEP" th:field="*{cep}" />
+						</div>
+					</div>
+				</div>			
+		
+				
+				
+				<div class="form-group">
+					<button class="btn  btn-primary" type="submit">Salvar</button>
+					<a th:href="@{/fornecedores/}" class="btn  btn-default">Cancelar</a>
+					<a th:href="@{/fornecedores/}" class="btn  btn-link  aw-btn-link-danger" onclick="excluir()">Voltar</a>
+				</div>
+		
+			</form>
+		</div>
+	</section>
+</body>
+</html>

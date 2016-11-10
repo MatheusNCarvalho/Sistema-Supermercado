@@ -1,0 +1,10 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"><!--  Add o thymelead -->
+	  
+	  <div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+			<i class="fa fa-check"></i><span th:text="${mensagem}"> Título Salvo com Sucesso</span>
+	</div>
+	  
+</html>

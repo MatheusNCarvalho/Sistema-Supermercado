@@ -1,0 +1,12 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"><!--  Add o thymelead -->
+	  
+	  
+	  <div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}"><!-- Aqui estamos usando o fields que já reconhece o Objeto titulo sem declaramos junto aonde ele vai verificar se há algum erro informado pelo objeto -->
+			<div th:each="detailedError : ${#fields.detailedErrors()}"> <!-- Aqui estamos usando o detailedErrors aonde contem uma lista de erros. -->
+				<span th:text="${detailedError.message}"></span><!-- Recebemos a lista na variavel  detailedError e na mensagem contem um getMensagem aonde será informado a mensagem de erro para o usuario -->
+			</div>
+			
+	  </div>
+</html>
