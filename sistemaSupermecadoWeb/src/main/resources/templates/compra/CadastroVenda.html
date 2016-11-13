@@ -6,7 +6,7 @@
 	xmlns:brewer="http://brewer.algaworks.com">
 
 <head>
-	<title>Cadastro de venda</title>
+	<title>Cadastro de compra</title>
 </head>
 
 <section layout:fragment="conteudo">
@@ -15,14 +15,14 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-10">
-					<h1>Cadastro de venda</h1>
+					<h1>Cadastro de compra</h1>
 				</div>
 			</div>
 		</div>
 	</div>
 	
 	<div class="container-fluid">
-		<form method="POST" th:action="@{/vendas/nova}">
+		<form method="POST" th:object="${compra}" th:action="@{/compras/nova}">
 			
 			<div class="row">
 				<div class="col-sm-4">
@@ -59,12 +59,15 @@
 			</div>
 
 			<div class="row">
-				<div class="form-group  col-sm-4  bw-required">
+				<div class="form-group  col-sm-4  bw-required" brewer:classforerror="fornecedor.codigo">
 					<label class="control-label" for="nomeCliente">Cliente</label>
 					<div class="input-group">
-				      <input id="nomeCliente" type="text"  class="form-control" placeholder="Clique na lupa para pesquisar o cliente"/>
+				      <input id="nomeCliente" type="text" readonly="readonly" class="form-control" th:field="*{fornecedor.nome}" 
+				      	placeholder="Clique na lupa para pesquisar o cliente"/>
+				      <input id="codigoCliente" type="hidden" th:field="*{fornecedor}"/>
 				      <span class="input-group-btn">
-				        <button class="btn  btn-default  js-tooltip" type="button" title="Pesquisa avançada">
+				        <button class="btn  btn-default  js-tooltip" type="button" title="Pesquisa avançada"
+				        		data-toggle="modal" data-target="#pesquisaRapidaClientes">
 				        	<i class="glyphicon  glyphicon-search"></i>
 				        </button>
 				      </span>
@@ -156,6 +159,7 @@
 			</div>
 		</form>
 	</div>
+		<th:block th:replace="fornecedor/PesquisaRapidaClientes :: pesquisaRapidaClientes"></th:block>
 </section>
 
 <th:block layout:fragment="javascript-extra">

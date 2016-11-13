@@ -8,14 +8,16 @@
 	layout:decorator="layout/LayoutPadrao"
 >
 
-<div class="modal fade" id="cadastroCategoria" tabindex="-1">
+<div class="modal fade" id="cadastroCategoria" tabindex="-1" th:fragment="modal">
 	<div class="modal-dialog">
-		<form action="" method="POST">
+	
+		<form class="form" th:action="@{/categorias}">
 			
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title"><strong>Cadastrar Categoria</strong></h4>
 				</div>
+									<div class="alert  alert-danger  hidden  js-mensagem-cadastro-rapido-estilo" role="alert"></div>
 				
 				<div class="modal-body">
 		

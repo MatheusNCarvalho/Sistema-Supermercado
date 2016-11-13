@@ -1,4 +1,4 @@
-$('#confirmacaoExclusaoModal').on('show.bs.modal', function(event) {
+/*$('#confirmacaoExclusaoModal').on('show.bs.modal', function(event) {
 	let button = $(event.relatedTarget);
 	
 	let codigoTitulo = button.data('id');
@@ -28,23 +28,17 @@ jQuery(document).ready(function($) {
 		$.ajax({
 			type : "POST",
 			contentType : "application/json",
-			url : "/categorias",
+			url : $('.form').attr('action'),
 			data : JSON.stringify(search),
 			dataType : 'json',
-			timeout : 100000,
 			success : function(data) {
 				console.log("SUCCESS: ", data.nome);
 				// ao entrar em success inicia uma funcao de criar uma option com o ultimo valor adicionado;
-				//$("#focusCategoria").append('<option value='+data.idCategoria+'>'+data.nome+'</option>');
 				$.getJSON("/categorias/data/jsonList", function(response){ 
 				    $("#focusCategoria option").remove(); 
-				    let options = ''; 
 				    $("#focusCategoria").empty().append('<option value="0">-Seleccione-</option>');
 				    $.each(response, function(index,nome) {
-				    	//outra forma de adicionar uma option
-				    	// jQuery("<option/>").text(nome.nome).attr("value", nome.id).appendTo("#focusCategoria");
-			            options += '<option value="' + nome.id + '">' + nome.nome + '</option>';
-			            $("#focusCategoria").append(options);
+				    	jQuery("<option/>").text(nome.nome).attr("value", nome.id).appendTo("#focusCategoria");
 			            });
 				});
 		
@@ -59,21 +53,4 @@ jQuery(document).ready(function($) {
 	});
 	
 	
-});
-//função que retorna um array de valores e com o array forma um select
-/*$('#close').click( function (e) {
-	$.getJSON("/categorias/data/jsonList", function(response){ 
-	    $("#focusCategoria option").remove(); 
-	        let options = ''; 
-	        $.each(response, function(index,nome) {
-	            options += '<option value="' + nome.id + '">' + nome.nome + '</option>';
-	            $("#focusCategoria").html(options);
-	        });
-	});
-});
-// outra funcao de adicionar value
- $("#focusCategoria").empty().append('<option value="">-Seleccione-</option>');
- $.each(data, function (idx, item) {
-                     jQuery("<option/>").text(item.nome).attr("value", item.id).appendTo("#focusCategoria");
-                 })
-*/
+});*/

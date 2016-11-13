@@ -4,7 +4,10 @@ package com.ifgoiano.supermecado.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ifgoiano.supermecado.model.Categoria;
 import com.ifgoiano.supermecado.repository.Categorias;
+import com.ifgoiano.supermecado.service.CadastroCategoriaService;
 
 
 
@@ -28,6 +32,8 @@ public class CategoriaController {
 	@Autowired
 	private Categorias categorias;
 	
+	@Autowired
+	private CadastroCategoriaService cadastroCategoriaService;
 	
 	@RequestMapping("/novo")
 	public ModelAndView novo(){
@@ -38,7 +44,7 @@ public class CategoriaController {
 	}
 	
 	@RequestMapping(value="/salvar",method = RequestMethod.POST)
-	public String salvar(@Validated  Categoria catego,Errors errors,RedirectAttributes attributes){
+	public String cadastrar(@Validated  Categoria catego,Errors errors,RedirectAttributes attributes){
 		if(errors.hasErrors()){
 			return "categoria/CadastroCategoria";
 		}
@@ -49,19 +55,13 @@ public class CategoriaController {
 		
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody Categoria getCategoriaJSON(@Validated @RequestBody Categoria catego,Errors errors,RedirectAttributes attributes){
-		// novo objeto para ser convertido em json para enviar pro front
-		Categoria cat = new Categoria();
-		cat.setDescricao(catego.getDescricao());
-		cat.setNome(catego.getNome());
-		if(errors.hasErrors()){
-			return cat;
+	@RequestMapping(method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE })
+	public @ResponseBody ResponseEntity<?> salvar(@RequestBody @Validated Categoria catego,BindingResult result){
+		if(result.hasErrors()){
+			return ResponseEntity.badRequest().body(result.getFieldError("nome").getDefaultMessage());
 		}
-		categorias.save(catego);
-		
-		attributes.addFlashAttribute("mensagem","Categoria salva com sucesso!");
-		return cat;
+		catego = cadastroCategoriaService.salvar(catego);
+		return ResponseEntity.ok(catego);
 		
 	}
 	

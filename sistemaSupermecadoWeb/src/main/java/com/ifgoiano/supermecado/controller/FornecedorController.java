@@ -3,13 +3,16 @@ package com.ifgoiano.supermecado.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -30,6 +33,8 @@ public class FornecedorController {
 	
 	@Autowired
 	private Fornecedores forne;
+	
+
 	
 	@Autowired
 	private CadastroFornecedorService cadastroFornecedorService;
@@ -79,6 +84,17 @@ public class FornecedorController {
 		
 	}
 	
+	@RequestMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
+	public @ResponseBody List<Fornecedor> pesquisar(String nome) {
+		validarTamanhoNome(nome);
+		return forne.findByNomeContainingIgnoreCase(nome);
+	}
+	
+	private void validarTamanhoNome(String nome) {
+		if (StringUtils.isEmpty(nome) || nome.length() < 3) {
+			throw new IllegalArgumentException();
+		}
+	}
 	@RequestMapping
 	public ModelAndView pesquisar(){
 		List<Fornecedor> todosFornecedores = forne.findAll();

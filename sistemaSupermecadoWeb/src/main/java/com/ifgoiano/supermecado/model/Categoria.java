@@ -1,26 +1,34 @@
 package com.ifgoiano.supermecado.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="categorias")
 public class Categoria {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="pk_categoria")
 	private long id;
 	
-	
+	@NotBlank(message = "O nome é obrigatório")
 	private String nome;
 	
 	private String descricao;
 	
+	@OneToMany(mappedBy="categoria")
+	private List<Produto> produtos;
 	
 	public long getId() {
 		return id;
