@@ -95,7 +95,11 @@
 								<option value="0"></option>
 								<option th:each="categoria : ${categorias}"
 									th:value="${categoria.id}" th:text="${categoria.nome}"></option></select>
-
+								<div class="bw-field-action__icon">
+							<a href="#" data-toggle="modal" data-target="#cadastroCategoria">
+								<i class="glyphicon  glyphicon-plus-sign  bw-glyphicon-large"></i>
+							</a>
+						</div>
 						</div>
 
 					</div>
@@ -123,6 +127,5 @@
 
 		<div layout:include="categoria/CadastroCategoria"></div>
 	</section>
-	
 </body>
 </html>

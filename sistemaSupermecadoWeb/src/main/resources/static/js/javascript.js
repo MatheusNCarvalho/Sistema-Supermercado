@@ -1,4 +1,4 @@
-$('#confirmacaoExclusaoModal').on('show.bs.modal', function(event) {
+/*$('#confirmacaoExclusaoModal').on('show.bs.modal', function(event) {
 	let button = $(event.relatedTarget);
 	
 	let codigoTitulo = button.data('id');
@@ -53,4 +53,4 @@ jQuery(document).ready(function($) {
 	});
 	
 	
-});
+});*/
