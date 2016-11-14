@@ -33,6 +33,19 @@ public class ItemCompra {
 		@JoinColumn(name="fk_produto")
 		private Produto produto;
 
+		@ManyToOne
+		@JoinColumn(name="fk_fornecedor")
+		private Fornecedor fornecedor;
+		
+		
+		public Fornecedor getFornecedor() {
+			return fornecedor;
+		}
+
+		public void setFornecedor(Fornecedor fornecedor) {
+			this.fornecedor = fornecedor;
+		}
+
 		public long getIdItem() {
 			return idItem;
 		}
