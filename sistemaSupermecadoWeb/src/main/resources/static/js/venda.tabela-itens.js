@@ -4,12 +4,7 @@ Brewer.PesquisaRapidaCliente = (function() {
 	
 	function PesquisaRapidaCliente() {
 		this.pesquisaRapidaClientesModal = $('#pesquisaRapidaClientes');
-		this.nomeInput = $('#nomeClienteModal');
-		this.pesquisaRapidaBtn = $('.js-pesquisa-rapida-clientes-btn'); 
-		this.containerTabelaPesquisa = $('#containerTabelaPesquisaRapidaClientes');
-		this.htmlTabelaPesquisa = $('#tabela-pesquisa-rapida-cliente').html();
-		this.template = Handlebars.compile(this.htmlTabelaPesquisa);
-		this.mensagemErro = $('.js-mensagem-erro');
+		alert("asd")
 	}
 	
 	PesquisaRapidaCliente.prototype.iniciar = function() {

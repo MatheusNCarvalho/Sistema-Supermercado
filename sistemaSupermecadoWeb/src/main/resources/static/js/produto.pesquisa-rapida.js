@@ -1,13 +1,13 @@
-var Brewer = Brewer || {};
+var SysteMark = SysteMark || {};
 
-Brewer.PesquisaRapidaCliente = (function() {
+SysteMark.PesquisaRapidaCliente = (function() {
 	
 	function PesquisaRapidaCliente() {
-		this.pesquisaRapidaClientesModal = $('#pesquisaRapidaClientes');
-		this.nomeInput = $('#nomeClienteModal');
-		this.pesquisaRapidaBtn = $('.js-pesquisa-rapida-clientes-btn'); 
-		this.containerTabelaPesquisa = $('#containerTabelaPesquisaRapidaClientes');
-		this.htmlTabelaPesquisa = $('#tabela-pesquisa-rapida-cliente').html();
+		this.pesquisaRapidaClientesModal = $('#pesquisaRapidaProdutos');
+		this.nomeInput = $('#codigoProdutoModal');
+		this.pesquisaRapidaBtn = $('.js-pesquisa-rapida-produtos-btn'); 
+		this.containerTabelaPesquisa = $('#containerTabelaPesquisaRapidaProdutos');
+		this.htmlTabelaPesquisa = $('#tabela-pesquisa-rapida-produto').html();
 		this.template = Handlebars.compile(this.htmlTabelaPesquisa);
 		this.mensagemErro = $('.js-mensagem-erro');
 	}
@@ -30,7 +30,7 @@ Brewer.PesquisaRapidaCliente = (function() {
 			method: 'GET',
 			contentType: 'application/json',
 			data: {
-				nome: this.nomeInput.val()
+				codigo: this.nomeInput.val()
 			}, 
 			success: onPesquisaConcluida.bind(this),
 			error: onErroPesquisa.bind(this)
@@ -38,12 +38,12 @@ Brewer.PesquisaRapidaCliente = (function() {
 	}
 	
 	function onPesquisaConcluida(resultado) {
-		$( "#log" ).html( resultado);
 		this.mensagemErro.addClass('hidden');
+		
 		var html = this.template(resultado);
 		this.containerTabelaPesquisa.html(html);
 		
-		var tabelaClientePesquisaRapida = new Brewer.TabelaClientePesquisaRapida(this.pesquisaRapidaClientesModal);
+		var tabelaClientePesquisaRapida = new SysteMark.TabelaClientePesquisaRapida(this.pesquisaRapidaClientesModal);
 		tabelaClientePesquisaRapida.iniciar();
 	} 
 	
@@ -55,7 +55,7 @@ Brewer.PesquisaRapidaCliente = (function() {
 	
 }());
 
-Brewer.TabelaClientePesquisaRapida = (function() {
+SysteMark.TabelaClientePesquisaRapida = (function() {
 	
 	function TabelaClientePesquisaRapida(modal) {
 		this.modalCliente = modal;
@@ -68,10 +68,10 @@ Brewer.TabelaClientePesquisaRapida = (function() {
 	
 	function onClienteSelecionado(evento) {
 		this.modalCliente.modal('hide');
-	
+		
 		var clienteSelecionado = $(evento.currentTarget);
-		$('#nomeCliente').val(clienteSelecionado.data('nome'));
-		$('#codigoCliente').val(clienteSelecionado.data('codigo'));
+		$('#nomeProduto').val(clienteSelecionado.data('nome'));
+		$('#codigoProduto').val(clienteSelecionado.data('codigo'));
 	}
 	
 	return TabelaClientePesquisaRapida;
@@ -79,6 +79,6 @@ Brewer.TabelaClientePesquisaRapida = (function() {
 }());
 
 $(function() {
-	var pesquisaRapidaCliente = new Brewer.PesquisaRapidaCliente();
+	var pesquisaRapidaCliente = new SysteMark.PesquisaRapidaCliente();
 	pesquisaRapidaCliente.iniciar();
 });

@@ -27,8 +27,8 @@ public class Compra {
 		@Column(name="pk_compra")
 		private long idCompra;
 	  
-		@Column(name="data_hora")
-		private LocalDateTime dataDaCompra;
+		@Column(name = "data_hora")
+		private LocalDateTime dataCompra;
 		
 		@ManyToOne
 		@JoinColumn(name="fk_fornecedor",referencedColumnName="pk_fornecedor", insertable=false, updatable=false)
@@ -50,11 +50,11 @@ public class Compra {
 		}
 
 		public LocalDateTime getDataDaCompra() {
-			return dataDaCompra;
+			return dataCompra;
 		}
 
 		public void setDataDaCompra(LocalDateTime dataDaCompra) {
-			this.dataDaCompra = dataDaCompra;
+			this.dataCompra = dataDaCompra;
 		}
 
 		public Fornecedor getFornecedor() {
