@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
@@ -40,7 +41,7 @@
 						<div class="aw-box__icon">
 							<i class="fa  fa-tag  fa-3x"></i>
 						</div>
-						<div class="aw-box__value">Orçamento</div>
+						<div class="aw-box__value">Compra</div>
 						<div class="aw-box__title">Status</div>
 					</div>
 				</div>
@@ -59,12 +60,12 @@
 			</div>
 
 			<div class="row">
-				<div class="form-group  col-sm-4  bw-required" brewer:classforerror="fornecedor.codigo">
-					<label class="control-label" for="nomeCliente">Cliente</label>
+				<div class="form-group  col-sm-5  bw-required" brewer:classforerror="compra.codigo">
+					<label class="control-label" for="nomeCliente">Fornecedor</label>
 					<div class="input-group">
-				      <input id="nomeCliente" type="text" readonly="readonly" class="form-control" th:field="*{fornecedor.nome}" 
+				      <input id="nomeCliente" type="text" readonly="readonly" class="form-control" th:field="*{fornecedor}" 
 				      	placeholder="Clique na lupa para pesquisar o cliente"/>
-				      <input id="codigoCliente" type="hidden" th:field="*{fornecedor}"/>
+				      <input id="codigoCliente" type="hidden"  />
 				      <span class="input-group-btn">
 				        <button class="btn  btn-default  js-tooltip" type="button" title="Pesquisa avançada"
 				        		data-toggle="modal" data-target="#pesquisaRapidaClientes">
@@ -74,42 +75,39 @@
 				    </div>
 				</div>
 				
-				<div class="form-group  col-sm-4 bw-required">
-					<label class="control-label" for="valorFrete">Valor do frete</label>
+				<div class="form-group  col-sm-7 bw-required">
+					<label class="control-label" for="valorFrete">Produto</label>
 					<div class="input-group">
-	      				<div class="input-group-addon">R$</div> 
-						<input type="text" maxlength="14" class="form-control  js-decimal" id="valorFrete"/>
-					</div>
+							<input id="nomeProduto" type="text" readonly="readonly" class="form-control"
+								placeholder="Pesquise um produto pelo nome ou codigo de barras" autofocus="autofocus" />
+						<input id="codigoProduto" type="hidden" />
+								<span class="input-group-btn">
+				        <button class="btn  btn-default  js-tooltip" type="button" title="Pesquisa avançada"
+				        		data-toggle="modal" data-target="#pesquisaRapidaProdutos">
+				        	<i class="glyphicon  glyphicon-search"></i>
+				        </button>
+				        <button class="btn  btn-default  js-tooltip" id="js-adicionar-item-tabela" type="button" title="Pesquisa avançada"
+				        		>
+				        	<i class="glyphicon  glyphicon-plus"></i>
+				        </button>
+				      </span>
+						</div>
 				</div>
 				
-				<div class="form-group  col-sm-4">
-					<label class="control-label" for="valorDesconto">Valor do desconto</label>
-					<div class="input-group">
-	      				<div class="input-group-addon">R$</div> 
-						<input type="text" maxlength="14" class="form-control  js-decimal" id="valorDesconto"/>
-					</div>
-				</div>
+				
 			</div>
 			
 			<div class="row">
 				<div class="form-group  col-lg-12">
 					<ul class="nav nav-tabs  js-abas-venda">
-					  <li role="presentation" class="active"><a href="#cervejas">Cervejas</a></li>
-					  <li role="presentation"><a href="#entrega">Entrega</a></li>
+					  <li role="presentation" class="active"><a href="#cervejas">Itens compra</a></li>
+					  
 					</ul>
 				</div>
 			</div>
 			
 			<div class="tab-content">
-				<div class="tab-pane active" id="cervejas">
-
-					<div class="row">
-						<div class="form-group  col-lg-12">
-							<input type="text" class="form-control" id="cerveja" 
-								placeholder="Pesquise e adicione a cerveja pelo SKU ou nome" autofocus="autofocus" />
-						</div>
-					</div>
-					
+				<div class="tab-pane active" id="produtos">
 					<div class="bw-tabela-cervejas">
 						<div class="bw-tabela-cervejas__vazio">
 							<i class="glyphicon  glyphicon-shopping-cart"></i> 
@@ -118,26 +116,7 @@
 					</div>
 				</div>
 				
-				<div class="tab-pane" id="entrega">
-					<div class="row">
-						<div class="form-group  col-sm-3">
-							<label class="control-label" for="dataEntrega">Data da entrega</label>
-							<input type="text" class="form-control" id="dataEntrega"/>
-						</div>
-						
-						<div class="form-group  col-sm-3">
-							<label class="control-label" for="horarioEntrega">Horário de entrega</label>
-							<input type="text" class="form-control" id="horarioEntrega"/>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="form-group  col-sm-12">
-							<textarea class="form-control" id="dataEntrega" rows="5" 
-								placeholder="Alguma observação para o entregador desse pedido?"></textarea>
-						</div>
-					</div>
-				</div>
+		
 			</div>
 			
 			<div class="row" style="clear: both">
@@ -160,6 +139,9 @@
 		</form>
 	</div>
 		<th:block th:replace="fornecedor/PesquisaRapidaClientes :: pesquisaRapidaClientes"></th:block>
+		<th:block th:replace="produto/PesquisaRapidaProdutos :: pesquisaRapidaProdutos"></th:block>
+		<th:block th:replace="hbs/TemplateAutocompleteCerveja"></th:block>
+		
 </section>
 
 <th:block layout:fragment="javascript-extra">
@@ -174,4 +156,3 @@ $(function() {
 </th:block>
 
 </html>
-
