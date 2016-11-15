@@ -26,12 +26,14 @@ Brewer.AdicinarProdutos = (function() {
 				codigo: this.nomeInput.val()
 			},
 			success :function(i,data) {
+				var obj = JSON.stringify(i);
+				alert(obj);
 				$("#produtos").append(
 						'<div class="bw-tabela-item">'+
 						'<div class="bw-tabela-item__coluna  bw-tabela-item__coluna--detalhes">'+
-							'<span class="bw-tabela-cerveja-nome">'+i[0].nome+'</span>'+
-							'<span class="label  label-default">'+i[0].codigoBarras+'</span>'+
-							'<span class="bw-tabela-cerveja-origem">'+i[0].categoria.nome+'</span>'+
+							'<span class="bw-tabela-cerveja-nome">'+i.nome+'</span>'+
+							'<span class="label  label-default">'+i.codigoBarras+'</span>'+
+							'<span class="bw-tabela-cerveja-origem">'+i.categoria.nome+'</span>'+
 						'</div>'+
 						'<div class="bw-tabela-item__coluna  bw-tabela-item__coluna--valores">'+
 						'<div class="bw-tabela-cerveja-valor-pequeno">'+
