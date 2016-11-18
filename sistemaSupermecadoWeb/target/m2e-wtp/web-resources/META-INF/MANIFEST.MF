@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: sistemaSupermecadoWeb
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: Usuario-PC
+Built-By: Edson
 Implementation-Vendor-Id: com.ifgoiano
 Build-Jdk: 1.8.0_111
 Implementation-URL: http://projects.spring.io/spring-boot/sistemasuper
