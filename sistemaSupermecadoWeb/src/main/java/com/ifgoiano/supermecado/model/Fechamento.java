@@ -1,13 +1,13 @@
 package com.ifgoiano.supermecado.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="fechamentos")
@@ -21,7 +21,7 @@ public class Fechamento {
 	
 	private int fk_abertura;
 	
-	private DateTimeFormat data_fechamento;
+	private LocalDateTime data_fechamento;
 	private double saldo_final;
 	
 	public long getId() {
@@ -40,11 +40,11 @@ public class Fechamento {
 		this.fk_abertura = fk_abertura;
 	}
 	
-	public DateTimeFormat getData_fechamento() {
+	public LocalDateTime getData_fechamento() {
 		return data_fechamento;
 	}
 	
-	public void setData_fechamento(DateTimeFormat data_fechamento) {
+	public void setData_fechamento(LocalDateTime data_fechamento) {
 		this.data_fechamento = data_fechamento;
 	}
 	
