@@ -1,5 +1,6 @@
 package com.ifgoiano.supermecado.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -22,7 +23,7 @@ public class Fechamento {
 	private int fk_abertura;
 	
 	private LocalDateTime data_fechamento;
-	private double saldo_final;
+	private BigDecimal saldo_final;
 	
 	public long getId() {
 		return id;
@@ -48,11 +49,11 @@ public class Fechamento {
 		this.data_fechamento = data_fechamento;
 	}
 	
-	public double getSaldo_final() {
+	public BigDecimal getSaldo_final() {
 		return saldo_final;
 	}
 	
-	public void setSaldo_final(double saldo_final) {
+	public void setSaldo_final(BigDecimal saldo_final) {
 		this.saldo_final = saldo_final;
 	}
 	
