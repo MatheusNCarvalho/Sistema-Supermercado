@@ -26,26 +26,23 @@ public class ItemCompra {
 		private BigDecimal valorUnitario;
 		
 		@ManyToOne
-		@JoinColumn(name="fk_compra")
+		@JoinColumn(name="fk_compra",referencedColumnName="pk_compra", insertable=false, updatable=false)
 		private Compra compra;
 		
+		@Column(name="fk_compra")
+		private long fkCompra;
+		
 		@ManyToOne
-		@JoinColumn(name="fk_produto")
+		@JoinColumn(name="fk_produto",referencedColumnName="pk_produtos", insertable=false, updatable=false)
 		private Produto produto;
+		
+		@Column(name="fk_produto")
+		private int fkProduto;
 
-		@ManyToOne
-		@JoinColumn(name="fk_fornecedor")
-		private Fornecedor fornecedor;
 		
 		
-		public Fornecedor getFornecedor() {
-			return fornecedor;
-		}
-
-		public void setFornecedor(Fornecedor fornecedor) {
-			this.fornecedor = fornecedor;
-		}
-
+		
+		
 		public long getIdItem() {
 			return idItem;
 		}
@@ -56,6 +53,22 @@ public class ItemCompra {
 
 		public Integer getQtd() {
 			return qtd;
+		}
+
+		public long getFkCompra() {
+			return fkCompra;
+		}
+
+		public void setFkCompra(long fkCompra) {
+			this.fkCompra = fkCompra;
+		}
+
+		public int getFkProduto() {
+			return fkProduto;
+		}
+
+		public void setFkProduto(int fkProduto) {
+			this.fkProduto = fkProduto;
 		}
 
 		public void setQtd(Integer qtd) {
@@ -92,6 +105,12 @@ public class ItemCompra {
 			int result = 1;
 			result = prime * result + (int) (idItem ^ (idItem >>> 32));
 			return result;
+		}
+
+		@Override
+		public String toString() {
+			return "ItemCompra [idItem=" + idItem + ", qtd=" + qtd + ", valorUnitario=" + valorUnitario + ", compra="
+					+ compra + ", fkCompra=" + fkCompra + ", produto=" + produto + ", fkProduto=" + fkProduto + "]";
 		}
 
 		@Override

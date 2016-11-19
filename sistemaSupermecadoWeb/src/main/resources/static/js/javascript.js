@@ -54,3 +54,58 @@ jQuery(document).ready(function($) {
 	
 	
 });*/
+$(document).ready(function(){
+    $('#enviar').click(function(e) {
+        e.preventDefault();
+        var pegarNome = $('.bw-tabela-cerveja-nome').text();
+        var pegarCodigoBarras = $('.label.label-default').text();
+        console.log(pegarNome)
+        console.log(pegarCodigoBarras)
+        var obj = {}
+		obj ['d']= $("#codigoCliente").val()
+        for (count=0; count <= 20; count++){
+        	if($('.produtoId.'+count).val()==""||$('.produtoId.'+count).val()==null){
+      
+        	}
+        	else {
+        		obj ['v'+count] =$("#produtoValor_"+count).val()
+        		obj ['q'+count]= $("#produtoQtd_"+count).val()
+        		obj['f'+count]= $('.produtoId.'+count).val()
+
+        		//obj[count] = '[codigoCliente='+codigoCliente+',valorUnitario='+valorUnitario+',qtd='+qtd+',fkProduto='+fkProduto+']'
+      		
+        	}
+        }
+
+		$.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "/compras/salvar",
+			data : JSON.stringify(obj),
+			dataType : 'json',
+			success : function(data) {
+				console.log("SUCCESS: ");
+			},
+			error : function(e) {
+			console.log("ERROR: ", e);
+			}
+			})
+        console.log(obj)
+    });
+
+});
+/*function somarValores(){
+	for(let p;p<20;p++){
+		let qtdDiv = $('#produtoQtd_'+p+'');
+		let valorUnitarioDiv = $('#produtoValor_'+p+'');
+		let somaqtd = somaQtd.val();
+		let somaValores = qtdDiv * valorUnitarioDiv;
+		
+		$('#somaId_'+p+'').append(
+				'<div id="somaId_'+p+'"class="bw-tabela-cerveja-valor-grande">'+somaValores+'</div>'
+				)
+		
+	}
+	
+	
+}*/

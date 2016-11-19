@@ -28,7 +28,7 @@ public class Compra {
 		private long idCompra;
 	  
 		@Column(name = "data_hora")
-		private LocalDateTime dataCompra;
+		private String dataCompra;
 		
 		@ManyToOne
 		@JoinColumn(name="fk_fornecedor",referencedColumnName="pk_fornecedor", insertable=false, updatable=false)
@@ -38,6 +38,14 @@ public class Compra {
 		private int fkFornecedor;
 		
 		
+		public int getFkFornecedor() {
+			return fkFornecedor;
+		}
+
+		public void setFkFornecedor(int fkFornecedor) {
+			this.fkFornecedor = fkFornecedor;
+		}
+
 		@OneToMany(mappedBy = "compra", cascade = CascadeType.ALL)
 		private List<ItemCompra> itens = new ArrayList<>();
 
@@ -49,11 +57,11 @@ public class Compra {
 			this.idCompra = idCompra;
 		}
 
-		public LocalDateTime getDataDaCompra() {
+		public String getDataDaCompra() {
 			return dataCompra;
 		}
 
-		public void setDataDaCompra(LocalDateTime dataDaCompra) {
+		public void setDataDaCompra(String dataDaCompra) {
 			this.dataCompra = dataDaCompra;
 		}
 
@@ -93,6 +101,12 @@ public class Compra {
 			if (idCompra != other.idCompra)
 				return false;
 			return true;
+		}
+
+		@Override
+		public String toString() {
+			return "Compra [idCompra=" + idCompra + ", dataCompra=" + dataCompra + ", fornecedor=" + fornecedor
+					+ ", fkFornecedor=" + fkFornecedor + ", itens=" + itens + "]";
 		}
 		
 		
