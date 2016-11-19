@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
 	xmlns:th="http://www.thymeleaf.org"
-	xmlns:brewer="http://brewer.algaworks.com">
+	xmlns:brewer="http://brewer.algaworks.com"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	
 <body>
+<input type="hidden" name="_csrf_header" th:value="${_csrf.headerName}"/>
+<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 <aside class="aw-layout-sidebar  js-sidebar" th:fragment="layout-sidebar">
 
 		<div class="aw-layout-sidebar__content">
@@ -25,7 +28,7 @@
 			            	<a th:href="@{/compras/novo}">Cadastro de venda</a>
 			            </li>
 			            
-			            <li class="aw-menu__item  aw-menu__item--link" >
+			            <li class="aw-menu__item  aw-menu__item--link" sec:authorize-url="/compras" >
 			            	<a th:href="@{/compras}">Pesquisa de vendas</a>
 			            </li>
 			        </ul>
@@ -38,8 +41,12 @@
           </a>
       
           <ul class="aw-menu__list  aw-menu__list--sublist">
-            <li class="aw-menu__item  aw-menu__item--link"><a th:href="@{/fornecedores/novo}">Cadastro de Fornecedor</a></li>
-            <li class="aw-menu__item  aw-menu__item--link  is-active"><a th:href="@{/fornecedores/}">Pesquisa de Fornecedores</a></li>
+            <li class="aw-menu__item  aw-menu__item--link">
+            	<a th:href="@{/fornecedores/novo}">Cadastro de Fornecedor</a>
+            </li>
+            <li class="aw-menu__item  aw-menu__item--link  is-active" sec:authorize-url="/fornecedores">
+            	<a th:href="@{/fornecedores/}">Pesquisa de Fornecedores</a>
+            </li>
             
             
           </ul>

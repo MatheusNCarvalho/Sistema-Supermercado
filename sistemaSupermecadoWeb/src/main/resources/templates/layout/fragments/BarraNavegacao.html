@@ -3,6 +3,8 @@
 	xmlns:th="http://www.thymeleaf.org">
 	
 <body>
+	<input type="hidden" name="_csrf_header" th:value="${_csrf.headerName}"/>
+	<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 	<nav class="navbar  navbar-fixed-top  navbar-default  js-sticky-reference" id="main-navbar" th:fragment="navbar">
 		<div class="container-fluid">
 		    <div class="navbar-header">
@@ -18,9 +20,10 @@
 		    </div>
 		
 		    <ul class="nav navbar-nav  navbar-right">
-		    	<!-- <li>
-		    		<p class="navbar-text" th:text="${#authentication.principal.usuario.nome}">Usuário</p>
-		    	</li> -->
+		    	<li>
+		    		<!-- //<p class="navbar-text" th:text="${#authentication.name}"></p> -->
+		    	</li>    	
+		    	
 		    	
 		    	<li>
 			      <a href="#" class="js-search-modal-trigger-show"><i class="fa  fa-search"></i></a>
@@ -42,7 +45,7 @@
 			          <i class="fa  fa-user"></i>
 			        </a>
 			        
-			        <ul class="dropdown-menu">
+			    <!--     <ul class="dropdown-menu">
 			          <li>
 			            <div class="aw-logged-user">
 			              <img src="https://api.adorable.io/avatars/80/joaodascouves" 
@@ -54,7 +57,7 @@
 			          <li><a href="#">Meu perfil</a></li>
 			          <li><a href="#">Alterar senha</a></li>
 			          <li><a href="#">Pagamentos</a></li>
-			        </ul>
+			        </ul> -->
 			      </li> 
 		    	<li>
 		        	<a th:href="@{/logout}"><em class="fa  fa-sign-out"></em></a>

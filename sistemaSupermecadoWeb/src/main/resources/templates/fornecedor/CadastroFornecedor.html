@@ -106,6 +106,7 @@
 				
 				
 				<div class="form-group">
+					<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 					<button class="btn  btn-primary" type="submit">Salvar</button>
 					<a th:href="@{/fornecedores/}" class="btn  btn-default">Cancelar</a>
 					<a th:href="@{/fornecedores/}" class="btn  btn-link  aw-btn-link-danger" onclick="excluir()">Voltar</a>

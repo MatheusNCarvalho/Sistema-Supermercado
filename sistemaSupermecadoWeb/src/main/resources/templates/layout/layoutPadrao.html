@@ -25,6 +25,9 @@
 	
 </head>
 <body>
+
+	<input type="hidden" name="_csrf_header" th:value="${_csrf.headerName}"/>
+	<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 	<!-- DIV responsavel por adicionar Menu, Cabeçalho nas paginas -->
 	<div class="aw-layout-page">
 		<div th:replace="layout/fragments/BarraNavegacao :: navbar"></div>
