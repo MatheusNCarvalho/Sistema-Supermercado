@@ -1,7 +1,10 @@
 package com.ifgoiano.supermecado.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -79,6 +82,12 @@ public class Compra {
 
 		public void setItens(List<ItemCompra> itens) {
 			this.itens = itens;
+		}
+		
+		public String getDateTime(){
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date data = new Date();
+			return dateFormat.format(data);
 		}
 
 		@Override

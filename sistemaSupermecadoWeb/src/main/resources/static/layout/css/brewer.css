@@ -76,7 +76,7 @@
 
 /*
 ###################
-# PÁGINAS DO SISTEMA
+# PÃ�GINAS DO SISTEMA
 ###################
 */
 
@@ -157,13 +157,13 @@
 	text-align: right;
 }
 
-/* Colunas - Pesquisa de usuários */
+/* Colunas - Pesquisa de usuÃ¡rios */
 .table-usuarios-col-status {
 	width: 30px;
 	text-align: center;
 }
 
-/* Tabela Cervejas página de Venda */
+/* Tabela Cervejas pÃ¡gina de Venda */
 .bw-tabela-cervejas {
 	margin-bottom: 15px;
 }
@@ -182,7 +182,7 @@
 
 /*
 ######################################
-# CUSTOMIZAÇÃO DE COMPONENTES
+# CUSTOMIZAÃ‡ÃƒO DE COMPONENTES
 ######################################
 */
 
@@ -203,7 +203,7 @@
 
 /* Tabela Item */
 .bw-tabela-item {
-	position: relative; /* Para que o painel de exclusão apareça dentro da linha */
+	position: relative; /* Para que o painel de exclusÃ£o apareÃ§a dentro da linha */
 	
 	padding: 15px 0;
 	
@@ -254,8 +254,12 @@
 	font-weight: 200;
 }
 
-.bw-tabela-cerveja-campo-quantidade {
-	width: 30px;
+.bw-tabela-venda-campo-quantidade {
+	width: 40px;
+	text-align: right;
+}
+.bw-tabela-venda-campo-valor {
+	width: 60px;
 	text-align: right;
 }
 
@@ -286,7 +290,6 @@
 	
 	.bw-tabela-item__coluna--valores {
 		width: calc(30% - 30px);
-
 		text-align: right;
 	}
 }

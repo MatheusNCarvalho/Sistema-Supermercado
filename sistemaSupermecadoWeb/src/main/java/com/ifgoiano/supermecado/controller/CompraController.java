@@ -72,7 +72,7 @@ public class CompraController {
 				String fornecedorJSON="d";
 				String fkfornecedor = array[0].replace(fornecedorJSON, "").replace("{","").replace("\"", "").replace(":", "").replace("}","").replace("/([A-Z])w+(:)/g", "");
 				compra.setFkFornecedor(Integer.parseInt(fkfornecedor));
-				compra.setDataDaCompra(getDateTime());
+				compra.setDataDaCompra(compra.getDateTime());
 				System.out.println(compra.getDataDaCompra());
 				compras.save(compra);
 				long fkCompra = compra.getIdCompra();
@@ -118,11 +118,6 @@ public class CompraController {
 			}
 		}
 		return "ok";
-	}
-	private String getDateTime(){
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date data = new Date();
-		return dateFormat.format(data);
 	}
 	
 }

@@ -36,15 +36,16 @@ Brewer.AdicinarProdutos = (function() {
 						'</div>'+
 						'<div class="bw-tabela-item__coluna  bw-tabela-item__coluna--valores">'+
 						'<div class="bw-tabela-cerveja-valor-pequeno">'+
-							'<input id="produtoQtd_'+count+'" name="qtd" type="text" maxlength="3" class="bw-tabela-cerveja-campo-quantidade js-tabela-cerveja-quantidade-item" value="1" data-codigo-cerveja="1">'+
-							'<span>x</span>'+
-							'<input id="produtoValor_'+count+'" name="valorUnitario "type="text" maxlength="3" class="bw-tabela-cerveja-campo-quantidade js-tabela-cerveja-quantidade-item" value="1" data-codigo-cerveja="1">'+
+						'<label>Valor unitário</label>'+
+						'<input id="v_'+count+'" name="valorUnitario"type="text" class="bw-tabela-venda-campo-valor" value="1">'+
+						'<span>x</span>'+
+						'<input id="q_'+count+'" name="qtd" type="text" maxlength="3" class="bw-tabela-venda-campo-quantidade" value="1">'+
+						'<label>Quantidade</label>'+
 						'</div>'+
 						'<div id="somaId_'+count+'"class="bw-tabela-cerveja-valor-grande">R$0,00</div>'+
 					'</div>'+
 					'</div>');
-				
-				
+				$('#tamanhoArray').val(count);
 			return count++;	
 			},
 			error: onErroPesquisa.bind(this)
@@ -55,7 +56,6 @@ Brewer.AdicinarProdutos = (function() {
 	function onErroPesquisa() {
 		this.mensagemErro.removeClass('hidden');
 	}
-	
 	return AdicinarProdutos;
 	
 }());

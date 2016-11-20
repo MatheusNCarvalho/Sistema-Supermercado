@@ -57,6 +57,7 @@ jQuery(document).ready(function($) {
 $(document).ready(function(){
     $('#enviar').click(function(e) {
         e.preventDefault();
+        var pegarTamanhoArray=$('#tamanhoArray').val;
         var pegarNome = $('.bw-tabela-cerveja-nome').text();
         var pegarCodigoBarras = $('.label.label-default').text();
         console.log(pegarNome)
@@ -64,17 +65,14 @@ $(document).ready(function(){
       //  var token = $("#token").val()
         var obj = {}
 		obj ['d']= $("#codigoCliente").val()
-        for (count=0; count <= 20; count++){
+        for (count=1; count <= pegarTamanhoArray; count++){
         	if($('.produtoId.'+count).val()==""||$('.produtoId.'+count).val()==null){
       
         	}
         	else {
-        		obj ['v'+count] =$("#produtoValor_"+count).val()
-        		obj ['q'+count]= $("#produtoQtd_"+count).val()
-        		obj['f'+count]= $('.produtoId.'+count).val()
-
-        		//obj[count] = '[codigoCliente='+codigoCliente+',valorUnitario='+valorUnitario+',qtd='+qtd+',fkProduto='+fkProduto+']'
-      		
+        		obj ['v'+count] =$("#v_"+count).val()
+        		obj ['q'+count]= $("#q_"+count).val()
+        		obj['f'+count]= $('.produtoId.'+count).val()      		
         	}
         }
         
@@ -85,8 +83,7 @@ $(document).ready(function(){
 			data : JSON.stringify(obj),
 			dataType : 'json',
 			success : function(data) {
-				console.log("SUCCESS: ");
-				
+				console.log("SUCCESS: ",data);
 			},
 			error : function(e) {
 			console.log("ERROR: ", e);
