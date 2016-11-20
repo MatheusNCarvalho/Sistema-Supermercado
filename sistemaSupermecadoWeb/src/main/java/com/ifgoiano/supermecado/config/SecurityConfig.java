@@ -37,8 +37,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/produtos/novo").hasRole("CADASTRAR_VINHO")
 				.antMatchers("/produtos/**").hasRole("LISTAR_VINHO")
 				.antMatchers("/fornecedores/**").hasRole("LISTAR_FORNECEDORES")
+				
 				.anyRequest().authenticated()
 				.and()
+				.csrf().disable()
 			.formLogin()
 				.loginPage("/login")
 				.permitAll()
@@ -46,6 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 	}
+	
 	
 	
 	

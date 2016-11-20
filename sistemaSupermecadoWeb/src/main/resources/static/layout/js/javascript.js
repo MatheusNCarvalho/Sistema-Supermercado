@@ -61,6 +61,7 @@ $(document).ready(function(){
         var pegarCodigoBarras = $('.label.label-default').text();
         console.log(pegarNome)
         console.log(pegarCodigoBarras)
+      //  var token = $("#token").val()
         var obj = {}
 		obj ['d']= $("#codigoCliente").val()
         for (count=0; count <= 20; count++){
@@ -76,7 +77,7 @@ $(document).ready(function(){
       		
         	}
         }
-
+        
 		$.ajax({
 			type : "POST",
 			contentType : "application/json",
@@ -85,6 +86,7 @@ $(document).ready(function(){
 			dataType : 'json',
 			success : function(data) {
 				console.log("SUCCESS: ");
+				
 			},
 			error : function(e) {
 			console.log("ERROR: ", e);

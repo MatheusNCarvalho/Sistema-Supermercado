@@ -3,7 +3,8 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-	<meta charset="UTF-8"/>
+	<meta charset="UTF-8" />
+	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
@@ -26,8 +27,8 @@
 </head>
 <body>
 
-	<input type="hidden" name="_csrf_header" th:value="${_csrf.headerName}"/>
-	<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+	<!-- <input type="hidden" name="_csrf_header" th:value="${_csrf.headerName}"/>
+	<input type="hidden" name="_csrf" th:value="${_csrf.token}"/> -->
 	<!-- DIV responsavel por adicionar Menu, Cabeçalho nas paginas -->
 	<div class="aw-layout-page">
 		<div th:replace="layout/fragments/BarraNavegacao :: navbar"></div>
