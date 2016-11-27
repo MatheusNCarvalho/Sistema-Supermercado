@@ -15,21 +15,37 @@
       <ul class="aw-menu__list">
 
         <li class="aw-menu__item">
-          <a th:href="@{/home/index}"><i class="fa  fa-fw  fa-home"></i><span>Dashboard</span></a>
+          <a th:href="@{/home/index}"><i class="glyphicon glyphicon-home"></i><span>Dashboard</span></a>
         </li>
         <li class="aw-menu__item">
           			<a href="#">
-            			<i class="fa  fa-fw  fa-credit-card"></i><span>Vendas</span>
+            			<i class="glyphicon glyphicon-credit-card"></i><span>Vendas</span>
             			<i class="aw-menu__navigation-icon  fa"></i>
           			</a>
       
           			<ul class="aw-menu__list  aw-menu__list--sublist">
 			            <li class="aw-menu__item  aw-menu__item--link" >
-			            	<a th:href="@{/compras/novo}">Cadastro de venda</a>
+			            	<a th:href="@{/vendas/novo}">Realizar venda</a>
 			            </li>
 			            
 			            <li class="aw-menu__item  aw-menu__item--link" sec:authorize-url="/compras" >
-			            	<a th:href="@{/compras}">Pesquisa de vendas</a>
+			            	<a th:href="@{/vendas}">Pesquisa de vendas</a>
+			            </li>
+			        </ul>
+		</li>
+		   <li class="aw-menu__item">
+          			<a href="#">
+            			<i class="fa  fa-fw  fa-credit-card"></i><span>Compras</span>
+            			<i class="aw-menu__navigation-icon  fa"></i>
+          			</a>
+      
+          			<ul class="aw-menu__list  aw-menu__list--sublist">
+			            <li class="aw-menu__item  aw-menu__item--link" >
+			            	<a th:href="@{/compras/novo}">Cadastro de compra</a>
+			            </li>
+			            
+			            <li class="aw-menu__item  aw-menu__item--link" sec:authorize-url="/compras" >
+			            	<a th:href="@{/compras}">Pesquisa de compras</a>
 			            </li>
 			        </ul>
 		</li>

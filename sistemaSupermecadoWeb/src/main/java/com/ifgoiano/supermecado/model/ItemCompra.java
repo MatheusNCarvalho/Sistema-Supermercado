@@ -19,7 +19,8 @@ public class ItemCompra {
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name="pk_item")
 		private long idItem;
-	
+		
+		@Column(name="qtd")
 		private Integer qtd;
 		
 		@Column(name="valor_unitario")

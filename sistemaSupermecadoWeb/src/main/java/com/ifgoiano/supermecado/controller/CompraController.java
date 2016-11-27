@@ -37,7 +37,8 @@ public class CompraController {
 	@Autowired
 	private Fornecedores fornecedores;
 	
-	@Autowired Produtos produtos;
+	@Autowired 
+	private Produtos produtos;
 	
 	@Autowired
 	private ItemCompras is;
