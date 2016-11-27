@@ -1,6 +1,5 @@
 $('#confirmacaoExclusaoModal').on('show.bs.modal', function(event) {
 	let button = $(event.relatedTarget);
-	alert("asdsadsa")
 	let codigoTitulo = button.data('id');
 	let descricaoTitulo = button.data('nome');
 
@@ -10,11 +9,12 @@ $('#confirmacaoExclusaoModal').on('show.bs.modal', function(event) {
 	let action = button.data('action');
 	if (!action.endsWith('/')) {
 		action += '/';
-	}
+	};
 	form.attr('action', action + codigoTitulo);
 	modal.find('.modal-body span').html('Tem certeza que deseja excluir o título <strong>' + descricaoTitulo + '</strong>?');
 	
 });
+$(function() {
     $('#enviar').on('click',function(e) {
         e.preventDefault();
         var pegarTamanhoArray=$('#tamanhoArray').val();
@@ -58,3 +58,4 @@ $('#confirmacaoExclusaoModal').on('show.bs.modal', function(event) {
 			})
         console.log(obj)
     });
+});

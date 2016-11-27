@@ -1,13 +1,17 @@
+$(function() {
+//funcao de quando abrir o modal colocar nome em foco	
 $('#cadastroCategoria').on('shown.bs.modal',function(){
 $('#nome').focus();	
 });
-
+// funcao de quando fechar o modal limpar os valores do modal e remover a mensagem de erro
 $('#cadastroCategoria').on('hide.bs.modal',function(){
 	$('#nome').val('');
 	$('#descricao').val('');
 	$('.js-mensagem-cadastro-rapido-estilo').addClass('hidden');
 });
-
+});
+// funcao de enviar as informações de dentro do modal em JSON e com o retorno criar uma opção no select com a categoria enviada no modal
+$(function() {
 $('#search-form').on('click',function(event){
 	event.preventDefault();
 	let url = $('#cadastroCategoria').find('form').attr('action');
@@ -33,7 +37,7 @@ $('#search-form').on('click',function(event){
 		}
 });
 });
-
+});
 
 
 
