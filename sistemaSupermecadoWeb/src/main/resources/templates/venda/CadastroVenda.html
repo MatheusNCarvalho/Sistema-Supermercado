@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/LayoutPadrao"
+	xmlns:brewer="http://brewer.algaworks.com">
+
+<head>
+	<title>Cadastro de compra</title>
+</head>
+
+<section layout:fragment="conteudo">
+
+	<div class="page-header">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-10">
+					<h1>Realizar Venda</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container-fluid">
+		<form method="POST" th:object="${compra}" th:action="@{/compras/nova}">
+			
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="aw-box">
+						<div class="aw-box__icon">
+							<i class="fa  fa-usd  fa-3x"></i>
+						</div>
+						<div class="aw-box__value valor">R$0,00</div>
+						<div class="aw-box__title">Total</div>
+					</div>
+				</div>
+				
+				<div class="col-sm-4">
+					<div class="aw-box">
+						<div class="aw-box__icon">
+							<i class="fa  fa-tag  fa-3x"></i>
+						</div>
+						<div class="aw-box__value">Venda</div>
+						<div class="aw-box__title">Status</div>
+					</div>
+				</div>
+				
+				<div class="col-sm-4">
+					<div class="aw-box">
+						<div class="aw-box__icon">
+							<i class="fa  fa-calendar  fa-3x"></i>
+						</div>
+						<div class="aw-box__value">
+							<span class="js-tooltip">Hoje</span>
+						</div>
+						<div class="aw-box__title">Criação</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="form-group  col-sm-5  bw-required" brewer:classforerror="compra.codigo">
+					<label class="control-label" for="nomeCliente">Cliente</label>
+	
+				      <input list="clientes" id="nomeCliente" type="text" class="form-control" />
+				      	<datalist id="clientes">
+  <option></option>
+
+</datalist>
+				      <input name="codigoCliente" id="codigoCliente" type="hidden"  />
+
+				</div>
+				
+				
+				<div class="form-group  col-sm-7 bw-required">
+					<label class="control-label" for="valorFrete">Produto</label>
+					<div class="input-group">
+							<input list="produtos" id="nomeProduto" type="text" class="form-control"
+								placeholder="Pesquise um produto pelo nome ou codigo de barras" autofocus="autofocus" />
+								   	<datalist id="produtos">
+  <option  th:each="produto : ${produto} " th:attr='data-id=${produto.id} ' th:value="${produto.nome}" th:text="${produto.codigoBarras}"/>
+	
+</datalist>
+										      <input name="codigoProduto" id="codigoProduto" type="hidden"  />
+						
+								<span class="input-group-btn">
+				        <button class="btn  btn-default  js-tooltip" id="js-adicionar-item-tabela" type="button" title="Pesquisa avançada"
+				        		>
+				        	<i class="glyphicon  glyphicon-plus"></i>
+				        </button>
+				      </span>
+						</div>
+				</div>
+				
+				
+			</div>
+			
+			<div class="row">
+				<div class="form-group  col-lg-12">
+					<ul class="nav nav-tabs  js-abas-venda">
+					  <li role="presentation" class="active teste"><a href="#cervejas">Itens venda</a></li>
+					  
+					</ul>
+				</div>
+			</div>
+			
+			<div class="tab-content">
+				<div class="tab-pane active" id="produtosAdicionar">
+					<div class="bw-tabela-cervejas">
+						<div class="bw-tabela-cervejas__vazio">
+							<i class="glyphicon  glyphicon-shopping-cart"></i> 
+							<span>Você ainda não adicionou nenhum Produto.</span>
+						</div>
+					</div>
+				</div>
+				
+		
+			</div>
+			 <input id="tamanhoArray" type="hidden"  />
+			<div class="row" style="clear: both">
+				<div class="col-lg-12">
+					<div class="btn-group">
+					  <button id="enviar" type="submit" class="btn  btn-primary">Salvar</button>
+					  <button type="button" class="btn  btn-primary  dropdown-toggle" data-toggle="dropdown">
+					    <span class="caret"></span>
+					  </button>
+					  
+					 <!--  <input id="token" type="hidden" name="_csrf" th:value="${_csrf.token}"/> -->
+					  <ul class="dropdown-menu">
+					    <li><a href="#">Salvar e emitir</a></li>
+					    <li><a href="#">Salvar e enviar por e-mail</a></li>
+					  </ul>
+					</div>
+				
+					<button class="btn  btn-danger">Cancelar</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	
+		
+</section>
+
+<th:block layout:fragment="javascript-extra">
+<script>
+$(function() {
+	$('.js-abas-venda a').click(function (e) {
+		e.preventDefault();
+		$(this).tab('show');
+	});
+});
+</script>
+</th:block>
+
+</html>
