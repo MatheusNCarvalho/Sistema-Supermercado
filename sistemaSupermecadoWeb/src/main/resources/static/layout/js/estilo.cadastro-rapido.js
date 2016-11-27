@@ -33,7 +33,11 @@ $('#search-form').on('click',function(event){
 			let comboEstilo = $('#focusCategoria');
 			comboEstilo.append('<option value=' + cate.id + '>' + cate.nome + '</option>');
 			comboEstilo.val(cate.id);
+			// funcoes para que apos adicionar uma nova option no select fechar o modal
 			$('#cadastroCategoria').modal('hide');
+			$('#cadastroCategoria').hide();
+			$('.modal-backdrop').hide();
+			$("body").removeClass("modal-open")
 		}
 });
 });
