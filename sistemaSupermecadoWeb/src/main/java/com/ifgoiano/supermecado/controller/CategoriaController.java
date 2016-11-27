@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ifgoiano.supermecado.model.Categoria;
 import com.ifgoiano.supermecado.repository.Categorias;
 import com.ifgoiano.supermecado.service.CadastroCategoriaService;
+import com.ifgoiano.supermecado.service.exception.NomeCategoriaJaCadastradoException;
 
 
 
@@ -58,7 +59,7 @@ public class CategoriaController {
 	@RequestMapping(method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody ResponseEntity<?> salvar(@RequestBody @Validated Categoria catego,BindingResult result){
 		if(result.hasErrors()){
-			return ResponseEntity.badRequest().body(result.getFieldError("nome").getDefaultMessage());
+			return ResponseEntity.badRequest().body(catego.getNome()+"Já Cadastrado");
 		}
 		catego = cadastroCategoriaService.salvar(catego);
 		return ResponseEntity.ok(catego);

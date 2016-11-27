@@ -1,3 +1,43 @@
+$('#cadastroCategoria').on('shown.bs.modal',function(){
+$('#nome').focus();	
+});
+
+$('#cadastroCategoria').on('hide.bs.modal',function(){
+	$('#nome').val('');
+	$('#descricao').val('');
+	$('.js-mensagem-cadastro-rapido-estilo').addClass('hidden');
+});
+
+$('#search-form').on('click',function(event){
+	event.preventDefault();
+	let url = $('#cadastroCategoria').find('form').attr('action');
+	let enviar={}
+	enviar["nome"] = $('#nome').val();
+	enviar["descricao"] = $('#descricao').val();
+
+	$.ajax({
+		url: url,
+		method: 'POST',
+		contentType: 'application/json',
+		data : JSON.stringify(enviar),
+		dataType : 'json',
+		error: function(t){
+			$('.js-mensagem-cadastro-rapido-estilo').removeClass('hidden');
+			$('.js-mensagem-cadastro-rapido-estilo').html('<span>' + enviar.nome + ' Já Cadastrado</span>')
+		},
+		success: function(cate){
+			let comboEstilo = $('#focusCategoria');
+			comboEstilo.append('<option value=' + cate.id + '>' + cate.nome + '</option>');
+			comboEstilo.val(cate.id);
+			$('#cadastroCategoria').modal('hide');
+		}
+});
+});
+
+
+
+
+/*
 var Supermercado = Supermercado || {};
 
 Supermercado.CategoriaCadastroRapido = (function() {
@@ -68,4 +108,4 @@ Supermercado.CategoriaCadastroRapido = (function() {
 $(function() {
 	var CategoriaCadastroRapido = new Supermercado.CategoriaCadastroRapido();
 	CategoriaCadastroRapido.iniciar();
-});
+});*/

@@ -31,7 +31,7 @@
 						<div class="aw-box__icon">
 							<i class="fa  fa-usd  fa-3x"></i>
 						</div>
-						<div class="aw-box__value">R$0,00</div>
+						<div class="aw-box__value valor">R$0,00</div>
 						<div class="aw-box__title">Total</div>
 					</div>
 				</div>
@@ -62,30 +62,29 @@
 			<div class="row">
 				<div class="form-group  col-sm-5  bw-required" brewer:classforerror="compra.codigo">
 					<label class="control-label" for="nomeCliente">Fornecedor</label>
-					<div class="input-group">
-				      <input id="nomeCliente" type="text" readonly="readonly" class="form-control" th:field="*{fornecedor}" 
-				      	placeholder="Clique na lupa para pesquisar o cliente"/>
+	
+				      <input list="fornecedores" id="nomeFornecedor" type="text" class="form-control" th:field="*{fornecedor}" />
+				      	<datalist id="fornecedores">
+  <option th:each="fornecedor : ${fornecedor} " th:attr='data-fornecedor=${fornecedor.idFornecedor} ' th:value="${fornecedor.nome}" th:text="${fornecedor.telefone}"></option>
+
+</datalist>
 				      <input name="codigoCliente" id="codigoCliente" type="hidden"  />
-				      <span class="input-group-btn">
-				        <button class="btn  btn-default  js-tooltip" type="button" title="Pesquisa avançada"
-				        		data-toggle="modal" data-target="#pesquisaRapidaClientes">
-				        	<i class="glyphicon  glyphicon-search"></i>
-				        </button>
-				      </span>
-				    </div>
+
 				</div>
+				
 				
 				<div class="form-group  col-sm-7 bw-required">
 					<label class="control-label" for="valorFrete">Produto</label>
 					<div class="input-group">
-							<input id="nomeProduto" type="text" readonly="readonly" class="form-control"
+							<input list="produtos" id="nomeProduto" type="text" class="form-control"
 								placeholder="Pesquise um produto pelo nome ou codigo de barras" autofocus="autofocus" />
-						<input id="codigoProduto" type="hidden" />
+								   	<datalist id="produtos">
+  <option  th:each="produto : ${produto} " th:attr='data-id=${produto.id} ' th:value="${produto.nome}" th:text="${produto.codigoBarras}"/>
+	
+</datalist>
+										      <input name="codigoProduto" id="codigoProduto" type="hidden"  />
+						
 								<span class="input-group-btn">
-				        <button class="btn  btn-default  js-tooltip" type="button" title="Pesquisa avançada"
-				        		data-toggle="modal" data-target="#pesquisaRapidaProdutos">
-				        	<i class="glyphicon  glyphicon-search"></i>
-				        </button>
 				        <button class="btn  btn-default  js-tooltip" id="js-adicionar-item-tabela" type="button" title="Pesquisa avançada"
 				        		>
 				        	<i class="glyphicon  glyphicon-plus"></i>
@@ -107,7 +106,7 @@
 			</div>
 			
 			<div class="tab-content">
-				<div class="tab-pane active" id="produtos">
+				<div class="tab-pane active" id="produtosAdicionar">
 					<div class="bw-tabela-cervejas">
 						<div class="bw-tabela-cervejas__vazio">
 							<i class="glyphicon  glyphicon-shopping-cart"></i> 

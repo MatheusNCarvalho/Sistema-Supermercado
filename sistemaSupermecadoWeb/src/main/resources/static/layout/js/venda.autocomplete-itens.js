@@ -1,21 +1,12 @@
-var Brewer = Brewer || {};
 
-Brewer.AdicinarProdutos = (function() {
-	var count=1;
-	function AdicinarProdutos() {
-		this.nomeInput = $('#codigoProduto');
-		this.pesquisaRapidaBtn = $('#js-adicionar-item-tabela'); 
-		this.htmlTabelaPesquisa = $('#template-autocomplete-cerveja').html();
-		this.template = Handlebars.compile(this.htmlTabelaPesquisa);
-		this.mensagemErro = $('.js-mensagem-erro');
-	}
-	
-	AdicinarProdutos.prototype.iniciar = function() {
-		this.pesquisaRapidaBtn.on('click', onPesquisaRapidaClicado.bind(this));
-
-	}
-
-		function onPesquisaRapidaClicado(event) {
+let count=1;
+$('#js-adicionar-item-tabela').on('click',function(e) {
+		 let val = $('#nomeProduto').val();
+	        let id = $('#produtos option').filter(function() {
+	            return this.value == val;
+	        }).data('id');
+	        let msg = id ? '' + id : 'No Match';
+	     
 		event.preventDefault();
 
 		$.ajax({
@@ -23,10 +14,10 @@ Brewer.AdicinarProdutos = (function() {
 			method: 'GET',
 			contentType: 'application/json',
 			data: {
-				codigo: this.nomeInput.val()
+				codigo: msg
 			},
 			success :function(i,data) {
-				$("#produtos").append(
+				$("#produtosAdicionar").append(
 						'<div class="bw-tabela-item">'+
 						'<div class="bw-tabela-item__coluna  bw-tabela-item__coluna--detalhes">'+
 							'<span class="bw-tabela-cerveja-nome">'+i.nome+'</span>'+
@@ -37,7 +28,7 @@ Brewer.AdicinarProdutos = (function() {
 						'<div class="bw-tabela-item__coluna  bw-tabela-item__coluna--valores">'+
 						'<div class="bw-tabela-cerveja-valor-pequeno">'+
 						'<label>Valor unitário</label>'+
-						'<input id="v_'+count+'" name="valorUnitario"type="text" class="bw-tabela-venda-campo-valor" value="1">'+
+						'<input id="v_'+count+'" name="valorUnitario" type="text" class="bw-tabela-venda-campo-valor" value="0.00">'+
 						'<span>x</span>'+
 						'<input id="q_'+count+'" name="qtd" type="text" maxlength="3" class="bw-tabela-venda-campo-quantidade" value="1">'+
 						'<label>Quantidade</label>'+
@@ -46,45 +37,11 @@ Brewer.AdicinarProdutos = (function() {
 					'</div>'+
 					'</div>');
 				$('#tamanhoArray').val(count);
+				
 			return count++;	
 			},
-			error: onErroPesquisa.bind(this)
+			error: function(e){
+				console.log("ERROR: ", e);
+			}
 		});
-	}
-	
-	
-	function onErroPesquisa() {
-		this.mensagemErro.removeClass('hidden');
-	}
-	return AdicinarProdutos;
-	
-}());
-
-Brewer.TabelaClientePesquisaRapida = (function() {
-	
-	function TabelaClientePesquisaRapida(modal) {
-		this.modalCliente = modal;
-		this.cliente = $('.js-cliente-pesquisa-rapida');
-	}
-	
-	TabelaClientePesquisaRapida.prototype.iniciar = function() {
-		this.cliente.on('click', onClienteSelecionado.bind(this));
-	}
-	
-	function onClienteSelecionado(evento) {
-		/*this.modalCliente.modal('hide');
-		alert(clienteSelecionado.data('codigo'));
-		var clienteSelecionado = $(evento.currentTarget);
-		$('#nomeCliente').val(clienteSelecionado.data('nome'));
-		$('#codigoCliente').val(clienteSelecionado.data('codigo'));*/
-	}
-	
-	return TabelaClientePesquisaRapida;
-	
-}());
-
-$(function() {
-	var AdicinarProdutos = new Brewer.AdicinarProdutos();
-	AdicinarProdutos.iniciar();
-});
-
+ });
