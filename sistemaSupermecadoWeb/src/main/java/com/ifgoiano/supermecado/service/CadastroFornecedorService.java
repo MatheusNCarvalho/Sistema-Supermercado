@@ -18,17 +18,10 @@ public class CadastroFornecedorService {
 	private Fornecedores fos;
 	
 	public void salvar(Fornecedor fo){
+	
+		Optional<Fornecedor> fornecedorExistente = fos.findByNomeContaining(fo.getNome());		
 		
-		
-		/*if(fo.getIdFornecedor() != 0 ){
-			fos.save(fo);
-		}*/
-		
-		Optional<Fornecedor> fornecedorExistente = fos.findByNomeContaining(fo.getNome());
-		//System.out.println(fornecedorExistente.toString());
-		
-		if(fornecedorExistente.isPresent()){	
-				
+		if(fornecedorExistente.isPresent()){					
 		
 			throw new FornecedorNomeJaCadastradoException(fo.getNome()+" já cadastrado");
 		}
@@ -36,10 +29,11 @@ public class CadastroFornecedorService {
 	}
 	
 	public List<Fornecedor> filtrar(FornecedorFiltro filtro){
+		String consulta = filtro.getNome();
 		String nome = null;
 		nome = filtro.getNome() == null ? "%" : filtro.getNome();
 		
-		return fos.findByNomeContainingIgnoreCase(nome);
+		return fos.findByNomeContainingOrCnpjContainingIgnoreCase(consulta,consulta);
 		
 		
 	}

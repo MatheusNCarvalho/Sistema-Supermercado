@@ -21,6 +21,7 @@ import com.ifgoiano.supermecado.model.Fornecedor;
 import com.ifgoiano.supermecado.repository.Fornecedores;
 import com.ifgoiano.supermecado.service.CadastroFornecedorService;
 import com.ifgoiano.supermecado.service.exception.FornecedorNomeJaCadastradoException;
+import com.ifgoiano.supermecado.service.filtro.FornecedorFiltro;
 
 
 
@@ -98,12 +99,9 @@ public class FornecedorController {
 		}
 	}
 	@RequestMapping
-	public ModelAndView pesquisar(){
-		List<Fornecedor> todosFornecedores = forne.findAll();
+	public ModelAndView pesquisar(@ModelAttribute("filtro") FornecedorFiltro filtro){
 		
-		//List<FornecedorEndereco> en = fornEnd.findByCodigo(id);	
-		
-		//System.out.println(en.toString());
+		List<Fornecedor> todosFornecedores = cadastroFornecedorService.filtrar(filtro);	
 		
 		ModelAndView mv = new ModelAndView("fornecedor/PesquisaFornecedores");
 		mv.addObject("fornecedores", todosFornecedores);

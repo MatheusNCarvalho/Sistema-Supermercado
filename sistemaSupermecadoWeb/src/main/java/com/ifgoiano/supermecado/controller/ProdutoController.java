@@ -108,7 +108,6 @@ public class ProdutoController {
 
 		return mv;
 	}
-
 	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
 	public String excluir(@PathVariable Long id, RedirectAttributes attributes) {
 		produtos.delete(id);
