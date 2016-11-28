@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
@@ -51,7 +52,8 @@ public class ProdutoController {
 	@RequestMapping("/novo")
 
 	public ModelAndView novo() {
-
+		String teste = (String) SecurityContextHolder.getContext().getAuthentication().getName();
+		System.out.println(teste);
 		List<Categoria> todosCategoria = categorias.findAll();
 
 		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);

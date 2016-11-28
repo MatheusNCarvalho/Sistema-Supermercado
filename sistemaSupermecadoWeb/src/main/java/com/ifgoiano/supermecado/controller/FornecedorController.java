@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
@@ -40,7 +41,8 @@ public class FornecedorController {
 	private CadastroFornecedorService cadastroFornecedorService;
 	
 	@RequestMapping("/novo")
-	public ModelAndView novo(Fornecedor fo){		
+	public ModelAndView novo(Fornecedor fo){
+		
 		ModelAndView mv = new ModelAndView("fornecedor/CadastroFornecedor");	
 		mv.addObject("fornecedor", fo);			
 		return mv;
@@ -110,7 +112,7 @@ public class FornecedorController {
 	
 	
 	@RequestMapping("{codigo}")//Aqui estamos recebemos o valor da variavel que vem da view
-	public ModelAndView edicao(@PathVariable Long codigo   ){//declaramos o @pathvariable + mais uma variavel para que possamos receber o valor
+	public ModelAndView edicao(@PathVariable Long codigo ){//declaramos o @pathvariable + mais uma variavel para que possamos receber o valor
 														// e trabalhamos com ela
 	   //estamos recuperando o codigo do bando de dados
 	    Fornecedor fornecedor = forne.findOne(codigo);
@@ -118,6 +120,15 @@ public class FornecedorController {
 		mv.addObject(fornecedor);//passamos o que recuperamos para a view
 		return mv;
 		
+	}
+	
+	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+	public String excluir(@PathVariable Long id, RedirectAttributes attributes) {
+		forne.delete(id);
+
+		attributes.addFlashAttribute("mensagem", "Título excluído com sucesso!");
+		return "redirect:/fornecedores";
+
 	}
 	
 	
