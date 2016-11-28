@@ -15,7 +15,7 @@
       <ul class="aw-menu__list">
 
         <li class="aw-menu__item">
-          <a th:href="@{/home/index}"><i class="glyphicon glyphicon-home"></i><span>Dashboard</span></a>
+          <a th:href="@{/home/index}"><i class="glyphicon glyphicon-home"></i><span>Home</span></a>
         </li>
         <li class="aw-menu__item">
           			<a href="#">
@@ -50,7 +50,7 @@
 			        </ul>
 		</li>
 
-        <li class="aw-menu__item  is-active">
+        <li class="aw-menu__item  ">
           <a href="#">
             <i class="fa  fa-fw  fa-database"></i><span>Cadastros</span>
             <i class="aw-menu__navigation-icon  fa"></i>
@@ -60,7 +60,7 @@
             <li class="aw-menu__item  aw-menu__item--link">
             	<a th:href="@{/fornecedores/novo}">Cadastro de Fornecedor</a>
             </li>
-            <li class="aw-menu__item  aw-menu__item--link  is-active" sec:authorize-url="/fornecedores">
+            <li class="aw-menu__item  aw-menu__item--link  " sec:authorize-url="/fornecedores">
             	<a th:href="@{/fornecedores/}">Pesquisa de Fornecedores</a>
             </li>
             
@@ -68,7 +68,7 @@
           </ul>
         </li>
         
-        <li class="aw-menu__item  is-active">
+        <li class="aw-menu__item  ">
           <a href="#">
             <i class="fa  fa-fw  fa-truck"></i><span>Estoque</span>
             <i class="aw-menu__navigation-icon  fa"></i>
