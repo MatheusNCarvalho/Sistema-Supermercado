@@ -3,6 +3,7 @@ package com.ifgoiano.supermecado.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,6 +31,8 @@ private ItemVendas itemVendas;
 
 @RequestMapping("/novo")
 public ModelAndView novo(){
+	
+	
 	List<Produto> todosProdutos = produtos.findAll();
 	ModelAndView mv = new ModelAndView("venda/CadastroVenda");
 	mv.addObject("venda",new Venda());
