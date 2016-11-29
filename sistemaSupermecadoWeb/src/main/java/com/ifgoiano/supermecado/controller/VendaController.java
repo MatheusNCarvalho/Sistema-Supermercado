@@ -79,7 +79,9 @@ public class VendaController {
 		//Pegado o usuario logado e setando na variavel
 		String teste = (String) SecurityContextHolder.getContext().getAuthentication().getName();
 		venda.setUsuario(teste);
-		
+		if(fkCliente=="No Match"){
+			fkCliente="0";
+		}
 		//Convertendo e setando o id do cliente e salvando a data da compra
 		venda.setFkCliente(Integer.parseInt(fkCliente));
 		venda.setDataVenda(venda.getDateTime());

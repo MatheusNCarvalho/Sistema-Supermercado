@@ -31,7 +31,7 @@
 						<div class="aw-box__icon">
 							<i class="fa  fa-usd  fa-3x"></i>
 						</div>
-						<div class="aw-box__value valor">R$0,00</div>
+						<div class="aw-box__value valor_caixa">R$0,00</div>
 						<div class="aw-box__title">Saldo do caixa</div>
 					</div>
 				</div>
@@ -41,7 +41,7 @@
 						<div class="aw-box__icon">
 							<i class="fa  fa-usd  fa-3x"></i>
 						</div>
-						<div class="aw-box__value valor">R$0,00</div>
+						<div class="aw-box__value valor_retirado">R$0,00</div>
 						<div class="aw-box__title">Retirada do caixa</div>
 					</div>
 				</div>
@@ -51,8 +51,8 @@
 						<div class="aw-box__icon">
 							<i class="fa  fa-usd  fa-3x"></i>
 						</div>
-						<div class="aw-box__value valor">R$0,00</div>
-						<div class="aw-box__title">Total de vendas</div>
+						<div class="aw-box__value valor_total">R$0,00</div>
+						<div class="aw-box__title">Total das vendas</div>
 					</div>
 				</div>
 				
@@ -98,7 +98,7 @@
 	
 				      <input list="clientes" id="nomeCliente" type="text" class="form-control" />
 				      	<datalist id="clientes">
-  <option th:each="cliente : ${cliente} " th:attr='data-cliente=${cliente.idUsuario} ' th:value="${cliente.nome}" th:text="${cliente.telefone}"></option>
+  <option th:each="cliente : ${cliente} " th:attr='data-clienteok=${cliente.idUsuario} ' th:value="${cliente.nome}" th:text="${cliente.telefone}"></option>
 
 </datalist>
 				      <input name="codigoCliente" id="codigoCliente" type="hidden"  />
@@ -166,7 +166,9 @@
 </section>
 
 <th:block layout:fragment="javascript-extra">
-
+	<script th:src="@{/layout/js/venda.autocomplete-itens.js}"></script>   	
+	<script th:src="@{/layout/js/atualizar-valores.js}"></script>	
+	<script th:src="@{/layout/js/venda-enviar.js}"></script>
 </th:block>
 
 </html>

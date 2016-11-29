@@ -21,7 +21,7 @@ import com.ifgoiano.supermecado.service.exception.FornecedorNomeJaCadastradoExce
 import com.ifgoiano.supermecado.service.filtro.FornecedorFiltro;
 
 @Controller
-@RequestMapping("/usuarios")
+@RequestMapping("/clientes")
 public class ClienteController {
 	
 	
@@ -45,14 +45,14 @@ public class ClienteController {
 			if(usuario.getIdUsuario() !=0){
 				usuarios.save(usuario);
 				attributes.addFlashAttribute("mensagem", "Usuario Atualizado com sucesso!");
-				return "redirect:/usuarios/novo";
+				return "redirect:/clientes/novo";
 			}else
 			{
 				usuarios.save(usuario);
 				attributes.addFlashAttribute("mensagem", "Usuario salvo com sucesso!");
 				//return "redirect:/fornecedores/novo";
 			}
-			return "redirect:/usuarios/novo";
+			return "redirect:/clientes/novo";
 			
 		}catch(FornecedorNomeJaCadastradoException e ){
 			errors.rejectValue("nome", e.getMessage(),e.getMessage());
