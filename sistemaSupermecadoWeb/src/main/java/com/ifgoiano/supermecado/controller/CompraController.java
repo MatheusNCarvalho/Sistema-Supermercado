@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -80,11 +81,15 @@ public class CompraController {
 				//Utilizando o substring para retirar a parte antes do fornecedor
 				String fkfornecedor = array[0].substring(6);
 				
+				//Pegado o usuario logado e setando na variavel
+				String teste = (String) SecurityContextHolder.getContext().getAuthentication().getName();
+				compra.setUsuario(teste);
+				
 				//Convertendo e setando o id do fornecedor e salvando a data da compra
 				compra.setFkFornecedor(Integer.parseInt(fkfornecedor));
 				compra.setDataDaCompra(compra.getDateTime());
 				
-				//Salvando a compra
+				//Salvando a compra	
 				compras.save(compra);
 				//Recuperando o id da compra para relacionar com compras itens
 				long fkCompra = compra.getIdCompra();
@@ -121,6 +126,15 @@ public class CompraController {
 			}
 		}
 		return ResponseEntity.ok(HttpStatus.OK);
+	}
+	
+	@RequestMapping
+	public ModelAndView pesquisar(){		
+		List<Compra> todasCompras = compras.findAll();
+		
+		ModelAndView mv = new ModelAndView("compra/PesquisaCompras");
+		mv.addObject("todasCompras",todasCompras);
+		return mv;
 	}
 	
 }

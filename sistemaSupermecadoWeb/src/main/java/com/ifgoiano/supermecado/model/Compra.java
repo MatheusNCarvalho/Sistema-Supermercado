@@ -40,7 +40,26 @@ public class Compra {
 		@Column(name="fk_fornecedor")
 		private int fkFornecedor;
 		
+		private String usuario;
 		
+		
+		
+		public String getDataCompra() {
+			return dataCompra;
+		}
+
+		public void setDataCompra(String dataCompra) {
+			this.dataCompra = dataCompra;
+		}
+
+		public String getUsuario() {
+			return usuario;
+		}
+
+		public void setUsuario(String usuario) {
+			this.usuario = usuario;
+		}
+
 		public int getFkFornecedor() {
 			return fkFornecedor;
 		}
