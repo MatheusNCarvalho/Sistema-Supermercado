@@ -11,12 +11,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
-@Table(name="usuarios")
-public class Usuario {
+@Table(name="clientes")
+public class Cliente {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "pk_usuario")
+	@Column(name = "pk_cliente")
 	private long idUsuario;
 	
 	@Column(name="nome")
@@ -160,7 +160,7 @@ public class Usuario {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		Cliente other = (Cliente) obj;
 		if (bairro == null) {
 			if (other.bairro != null)
 				return false;

@@ -1,10 +1,16 @@
 package com.ifgoiano.supermecado.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -17,12 +23,28 @@ public class Venda {
 @Column(name="pk_venda")
 private long idVenda;
 
+@ManyToOne
+@JoinColumn(name="fk_cliente",referencedColumnName="pk_cliente", insertable=false, updatable=false)
+private Cliente cliente;
+
+@Column(name="fk_cliente")
+private int fkCliente;
 
 @Column(name = "data_hora")
 private String dataVenda;
 
 private String usuario;
 
+
+
+public Cliente getCliente() {
+	return cliente;
+}
+
+
+public void setCliente(Cliente cliente) {
+	this.cliente = cliente;
+}
 
 
 public String getUsuario() {
@@ -45,6 +67,16 @@ public void setIdVenda(long idVenda) {
 }
 
 
+public int getFkCliente() {
+	return fkCliente;
+}
+
+
+public void setFkCliente(int fkCliente) {
+	this.fkCliente = fkCliente;
+}
+
+
 public String getDataVenda() {
 	return dataVenda;
 }
@@ -60,6 +92,11 @@ public String toString() {
 	return "Venda [idVenda=" + idVenda + ", dataVenda=" + dataVenda + "]";
 }
 
+public String getDateTime(){
+	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	Date data = new Date();
+	return dateFormat.format(data);
+}
 
 @Override
 public int hashCode() {

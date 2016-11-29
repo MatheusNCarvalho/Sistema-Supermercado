@@ -15,28 +15,28 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ifgoiano.supermecado.model.Fornecedor;
 import com.ifgoiano.supermecado.model.Produto;
-import com.ifgoiano.supermecado.model.Usuario;
-import com.ifgoiano.supermecado.repository.Usuarios;
+import com.ifgoiano.supermecado.model.Cliente;
+import com.ifgoiano.supermecado.repository.Clientes;
 import com.ifgoiano.supermecado.service.exception.FornecedorNomeJaCadastradoException;
 import com.ifgoiano.supermecado.service.filtro.FornecedorFiltro;
 
 @Controller
 @RequestMapping("/usuarios")
-public class UsuarioController {
+public class ClienteController {
 	
 	
 	@Autowired
-	private Usuarios usuarios;
+	private Clientes usuarios;
 	
 	@RequestMapping("/novo")
 	public ModelAndView novo(){
 		ModelAndView mv = new ModelAndView("usuario/CadastroUsuario");	
-		mv.addObject("usuario", new Usuario());			
+		mv.addObject("usuario", new Cliente());			
 		return mv;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String salvar(@Validated Usuario usuario,Errors errors,RedirectAttributes attributes){
+	public String salvar(@Validated Cliente usuario,Errors errors,RedirectAttributes attributes){
 		if(errors.hasErrors()){
 			return "usuario/CadastroUsuario";
 		}
@@ -63,7 +63,7 @@ public class UsuarioController {
 		
 	}
 	
-	public List<Usuario> filtrar(FornecedorFiltro filtro){
+	public List<Cliente> filtrar(FornecedorFiltro filtro){
 		String consulta = filtro.getNome();
 		
 		return usuarios.findByNomeContainingOrCpfContainingIgnoreCase(consulta,consulta);
@@ -72,7 +72,7 @@ public class UsuarioController {
 
 	public ModelAndView pesquisar(@ModelAttribute("filtro") FornecedorFiltro filtro) {
 
-		List<Usuario> todosUsuario = filtrar(filtro);
+		List<Cliente> todosUsuario = filtrar(filtro);
 		ModelAndView mv = new ModelAndView("usuario/PesquisaUsuario");
 		mv.addObject("usuarios",todosUsuario);
 		return mv;
@@ -83,7 +83,7 @@ public class UsuarioController {
 	public ModelAndView edicao(@PathVariable Long codigo ){//declaramos o @pathvariable + mais uma variavel para que possamos receber o valor
 														// e trabalhamos com ela
 	   //estamos recuperando o codigo do bando de dados
-	    Usuario usuario = usuarios.findOne(codigo);
+	    Cliente usuario = usuarios.findOne(codigo);
 		ModelAndView mv = new ModelAndView("usuario/CadastroUsuario");
 		mv.addObject(usuario);//passamos o que recuperamos para a view
 		return mv;

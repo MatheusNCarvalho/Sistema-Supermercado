@@ -119,9 +119,12 @@
 
 			</form>
 		</div>
-
-
-		<div layout:include="categoria/CadastroCategoria"></div>
+		<div layout:include="categoria/CadastroCategoria"></div>		
 	</section>
+	<th:block layout:fragment="javascript-extra">
+			<script th:src="@{/layout/js/estilo.cadastro-rapido.js}"></script> 
+	
+	</th:block>
+	
 </body>
 </html>

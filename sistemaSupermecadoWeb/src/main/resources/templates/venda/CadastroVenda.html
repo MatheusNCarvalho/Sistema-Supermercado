@@ -7,7 +7,7 @@
 	xmlns:brewer="http://brewer.algaworks.com">
 
 <head>
-	<title>Cadastro de compra</title>
+	<title>Realizar venda</title>
 </head>
 
 <section layout:fragment="conteudo">
@@ -32,7 +32,40 @@
 							<i class="fa  fa-usd  fa-3x"></i>
 						</div>
 						<div class="aw-box__value valor">R$0,00</div>
-						<div class="aw-box__title">Total</div>
+						<div class="aw-box__title">Saldo do caixa</div>
+					</div>
+				</div>
+				
+				<div class="col-sm-4">
+					<div class="aw-box">
+						<div class="aw-box__icon">
+							<i class="fa  fa-usd  fa-3x"></i>
+						</div>
+						<div class="aw-box__value valor">R$0,00</div>
+						<div class="aw-box__title">Retirada do caixa</div>
+					</div>
+				</div>
+				
+				<div class="col-sm-4">
+					<div class="aw-box">
+						<div class="aw-box__icon">
+							<i class="fa  fa-usd  fa-3x"></i>
+						</div>
+						<div class="aw-box__value valor">R$0,00</div>
+						<div class="aw-box__title">Total de vendas</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="aw-box">
+						<div class="aw-box__icon">
+							<i class="fa  fa-usd  fa-3x"></i>
+						</div>
+						<div class="aw-box__value valor">R$0,00</div>
+						<div class="aw-box__title">Total da venda</div>
 					</div>
 				</div>
 				
@@ -60,12 +93,12 @@
 			</div>
 
 			<div class="row">
-				<div class="form-group  col-sm-5  bw-required" brewer:classforerror="compra.codigo">
+				<div class="form-group  col-sm-5 " brewer:classforerror="compra.codigo">
 					<label class="control-label" for="nomeCliente">Cliente</label>
 	
 				      <input list="clientes" id="nomeCliente" type="text" class="form-control" />
 				      	<datalist id="clientes">
-  <option></option>
+  <option th:each="cliente : ${cliente} " th:attr='data-cliente=${cliente.idUsuario} ' th:value="${cliente.nome}" th:text="${cliente.telefone}"></option>
 
 </datalist>
 				      <input name="codigoCliente" id="codigoCliente" type="hidden"  />
@@ -99,7 +132,7 @@
 			<div class="row">
 				<div class="form-group  col-lg-12">
 					<ul class="nav nav-tabs  js-abas-venda">
-					  <li role="presentation" class="active teste"><a href="#cervejas">Itens venda</a></li>
+					  <li role="presentation" class="active teste"><a href="#">Itens venda</a></li>
 					  
 					</ul>
 				</div>
@@ -120,19 +153,9 @@
 			 <input id="tamanhoArray" type="hidden"  />
 			<div class="row" style="clear: both">
 				<div class="col-lg-12">
-					<div class="btn-group">
+			
 					  <button id="enviar" type="submit" class="btn  btn-primary">Salvar</button>
-					  <button type="button" class="btn  btn-primary  dropdown-toggle" data-toggle="dropdown">
-					    <span class="caret"></span>
-					  </button>
-					  
-					 <!--  <input id="token" type="hidden" name="_csrf" th:value="${_csrf.token}"/> -->
-					  <ul class="dropdown-menu">
-					    <li><a href="#">Salvar e emitir</a></li>
-					    <li><a href="#">Salvar e enviar por e-mail</a></li>
-					  </ul>
-					</div>
-				
+	
 					<button class="btn  btn-danger">Cancelar</button>
 				</div>
 			</div>
@@ -143,14 +166,7 @@
 </section>
 
 <th:block layout:fragment="javascript-extra">
-<script>
-$(function() {
-	$('.js-abas-venda a').click(function (e) {
-		e.preventDefault();
-		$(this).tab('show');
-	});
-});
-</script>
+
 </th:block>
 
 </html>
