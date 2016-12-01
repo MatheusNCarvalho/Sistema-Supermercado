@@ -1,4 +1,12 @@
 $(function() {
+	$( window ).ready(function() {
+		 let condicao = $("#verificarCondicao").val();
+		 if(condicao=="true"){
+			 $('#abrirCaixaModal').modal('show')
+		 }		 
+		});
+});
+$(function() {
     $('#enviar').on('click',function(e) {
         e.preventDefault();
         var pegarTamanhoArray=$('#tamanhoArray').val();

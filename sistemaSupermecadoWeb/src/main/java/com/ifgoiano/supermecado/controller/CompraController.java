@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import java.util.List;
 
+import org.hibernate.cfg.FkSecondPass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +21,11 @@ import com.ifgoiano.supermecado.model.Fornecedor;
 import com.ifgoiano.supermecado.model.ItemCompra;
 import com.ifgoiano.supermecado.model.Produto;
 import com.ifgoiano.supermecado.repository.Compras;
+import com.ifgoiano.supermecado.repository.Fechamentos;
 import com.ifgoiano.supermecado.repository.Fornecedores;
 import com.ifgoiano.supermecado.repository.ItemCompras;
 import com.ifgoiano.supermecado.repository.Produtos;
+import com.ifgoiano.supermecado.repository.Aberturas;
 
 
 
@@ -43,6 +46,7 @@ public class CompraController {
 	
 	@Autowired
 	private ItemCompras is;
+	
 
 	@RequestMapping("/novo")
 	public ModelAndView novo(){
@@ -52,6 +56,7 @@ public class CompraController {
 		mv.addObject("compra",new Compra());
 		mv.addObject("produto",todosProdutos);
 		mv.addObject("fornecedor", todosFornecedores);
+
 		return mv;
 		
 		

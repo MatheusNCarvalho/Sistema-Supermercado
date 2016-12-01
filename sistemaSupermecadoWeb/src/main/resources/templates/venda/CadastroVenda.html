@@ -11,7 +11,8 @@
 </head>
 
 <section layout:fragment="conteudo">
-
+ <input th:value="${condicao}" id="verificarCondicao" type="hidden"  />
+ 	<a data-toggle="modal" data-target="#abrirCaixaModal"></a>
 	<div class="page-header">
 		<div class="container-fluid">
 			<div class="row">
@@ -162,6 +163,7 @@
 		</form>
 	</div>
 	
+					<div layout:include="caixa/ModalAbrirCaixa"></div>		
 		
 </section>
 

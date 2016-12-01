@@ -20,7 +20,9 @@ import com.ifgoiano.supermecado.model.ItemVenda;
 import com.ifgoiano.supermecado.model.Venda;
 import com.ifgoiano.supermecado.repository.ItemVendas;
 import com.ifgoiano.supermecado.repository.Produtos;
+import com.ifgoiano.supermecado.repository.Aberturas;
 import com.ifgoiano.supermecado.repository.Clientes;
+import com.ifgoiano.supermecado.repository.Fechamentos;
 import com.ifgoiano.supermecado.repository.Vendas;
 
 @Controller
@@ -39,6 +41,12 @@ public class VendaController {
 	@Autowired
 	private ItemVendas itemVendas;
 
+	@Autowired
+	private Aberturas aberturas;
+	
+	@Autowired
+	private Fechamentos fechamentos;
+	
 	@RequestMapping("/novo")
 	public ModelAndView novo() {
 		List<Cliente> todosUsuarios = usuarios.findAll();
@@ -47,6 +55,13 @@ public class VendaController {
 		mv.addObject("venda", new Venda());
 		mv.addObject("cliente", todosUsuarios);
 		mv.addObject("produto", todosProdutos);
+		String teste = SecurityContextHolder.getContext().getAuthentication().getName();
+		boolean condicao=true;
+		if (aberturas.find(teste)>fechamentos.find(teste)){
+			condicao=false;
+		}
+		mv.addObject("condicao",condicao);
+		System.out.println("Precisa Abrir Modal"+condicao);
 		return mv;
 	}
 

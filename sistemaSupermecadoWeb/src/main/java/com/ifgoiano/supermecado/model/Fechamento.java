@@ -20,11 +20,38 @@ public class Fechamento {
 	@Column(name="pk_fechamento")
 	private long id;
 	
-	private int fk_abertura;
+	private int fkAbertura;
 	
 	private LocalDateTime data_fechamento;
-	private BigDecimal saldo_final;
 	
+	private BigDecimal saldoFinal;
+	
+	private String Funcionario;
+	
+	public int getFkAbertura() {
+		return fkAbertura;
+	}
+
+	public void setFkAbertura(int fkAbertura) {
+		this.fkAbertura = fkAbertura;
+	}
+
+	public BigDecimal getSaldoFinal() {
+		return saldoFinal;
+	}
+
+	public void setSaldoFinal(BigDecimal saldoFinal) {
+		this.saldoFinal = saldoFinal;
+	}
+
+	public String getFuncionario() {
+		return Funcionario;
+	}
+
+	public void setFuncionario(String funcionario) {
+		Funcionario = funcionario;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -34,11 +61,11 @@ public class Fechamento {
 	}
 	
 	public int getFk_abertura() {
-		return fk_abertura;
+		return fkAbertura;
 	}
 	
 	public void setFk_abertura(int fk_abertura) {
-		this.fk_abertura = fk_abertura;
+		this.fkAbertura = fk_abertura;
 	}
 	
 	public LocalDateTime getData_fechamento() {
@@ -50,11 +77,11 @@ public class Fechamento {
 	}
 	
 	public BigDecimal getSaldo_final() {
-		return saldo_final;
+		return saldoFinal;
 	}
 	
 	public void setSaldo_final(BigDecimal saldo_final) {
-		this.saldo_final = saldo_final;
+		this.saldoFinal = saldo_final;
 	}
 	
 	@Override
@@ -78,4 +105,11 @@ public class Fechamento {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Fechamento [id=" + id + ", fkAbertura=" + fkAbertura + ", data_fechamento=" + data_fechamento
+				+ ", saldoFinal=" + saldoFinal + "]";
+	}
+	
 }
