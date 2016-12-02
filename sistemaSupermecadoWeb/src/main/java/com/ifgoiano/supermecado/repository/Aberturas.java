@@ -18,4 +18,7 @@ public interface Aberturas extends JpaRepository<Abertura, Long	> {
 
 	@Query(value="SELECT COUNT(*)  FROM aberturas WHERE funcionario = (:funcionarioId)", nativeQuery=true)
 	public int find(@Param("funcionarioId")String funcionarioId);
+	
+	@Query(value="SELECT MAX(pk_abertura) FROM aberturas WHERE funcionario = (:funcionarioId)",nativeQuery=true)
+	public int findId(@Param("funcionarioId")String funcionarioId);
 }

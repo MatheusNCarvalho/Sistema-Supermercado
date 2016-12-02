@@ -59,7 +59,10 @@ public class VendaController {
 		boolean condicao=true;
 		if (aberturas.find(teste)>fechamentos.find(teste)){
 			condicao=false;
+			mv.addObject("valorSaldoCaixa",vendas.selectTotalVendas(teste, aberturas.findId(teste)));
+
 		}
+		mv.addObject("valorDoCaixa",vendas.selectSaldoCaixa(teste));
 		mv.addObject("condicao",condicao);
 		System.out.println("Precisa Abrir Modal"+condicao);
 		return mv;
@@ -100,7 +103,7 @@ public class VendaController {
 		//Convertendo e setando o id do cliente e salvando a data da compra
 		venda.setFkCliente(Integer.parseInt(fkCliente));
 		venda.setDataVenda(venda.getDateTime());
-		
+		venda.setFkAbertura(aberturas.findId(teste));
 		//Salvando a compra	
 		vendas.save(venda);
 		

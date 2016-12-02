@@ -7,6 +7,31 @@ $(function() {
 		});
 });
 $(function() {
+	 $('#enviarValorInicial').on('click',function(e) {
+	     e.preventDefault();
+		 let enviar={
+				 "saldo" : $("#saldoInicial").val(),
+		 }
+		 $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "/aberturas",
+			data : JSON.stringify(enviar),
+			dataType : 'json',
+			success : function(data) {
+				// funcoes para que apos adicionar uma nova option no select fechar o modal
+				$('#abrirCaixaModal').modal('hide');
+				$('#abrirCaixaModal').hide();
+				$('.modal-backdrop').hide();
+				$("body").removeClass("modal-open")
+			},
+			error : function(e) {
+			console.log("ERROR: ", e);
+			}
+		 })
+		});
+});
+$(function() {
     $('#enviar').on('click',function(e) {
         e.preventDefault();
         var pegarTamanhoArray=$('#tamanhoArray').val();
@@ -28,7 +53,7 @@ $(function() {
         	}
       
         	else {
-        		obj ['v'+cot] =$("#v_"+count).val()
+        		obj ['v'+cot] = "55"//$("#v_"+count).val()
         		obj ['q'+cot]= $("#q_"+count).val()
         		obj['f'+cot]= $('.produtoId.'+count).val()      		
         	}
@@ -38,11 +63,11 @@ $(function() {
 		$.ajax({
 			type : "POST",
 			contentType : "application/json",
-			url : "/compras/salvar",
+			url : "/vendas/salvar",
 			data : JSON.stringify(obj),
 			dataType : 'json',
 			success : function(data) {
-				console.log("SUCCESS: ",data);
+				window.location.reload(true);
 			},
 			error : function(e) {
 			console.log("ERROR: ", e);

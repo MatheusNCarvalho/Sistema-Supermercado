@@ -23,6 +23,10 @@ public class Venda {
 @Column(name="pk_venda")
 private long idVenda;
 
+
+@Column(name="fk_abertura")
+private int fkAbertura;
+
 @ManyToOne
 @JoinColumn(name="fk_cliente",referencedColumnName="pk_cliente", insertable=false, updatable=false)
 private Cliente cliente;
@@ -35,6 +39,16 @@ private String dataVenda;
 
 private String usuario;
 
+
+
+public long getFkAbertura() {
+	return fkAbertura;
+}
+
+
+public void setFkAbertura(int fkAbertura) {
+	this.fkAbertura = fkAbertura;
+}
 
 
 public Cliente getCliente() {

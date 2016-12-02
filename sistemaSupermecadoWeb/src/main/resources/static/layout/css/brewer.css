@@ -277,6 +277,9 @@
 	font-weight: 300;
 	font-size: 1.6em;
 }
+.botao-esquerda{
+	float: left;
+}
 
 @media (min-width: 768px) { /* screen-sm-min */
 	.bw-tabela-item__coluna {

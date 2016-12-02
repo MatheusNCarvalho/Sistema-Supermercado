@@ -1,7 +1,10 @@
 package com.ifgoiano.supermecado.model;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,20 +28,31 @@ public class Abertura {
 	@Column(name="pk_abertura")
 	private long id;
 	
-	@Column(name="data_fechamento")
-	private LocalDateTime dataFechamento;
-	
-	@Column(name="saldo_inicial")
-	private BigDecimal saldoInicial;
+
+	private BigDecimal saldo;
 	
 	@Column(name="funcionario")
 	private String funcionario;
 
-	
+	@Column(name = "data_hora")
+	private String dataVenda;
 
-	@Column(name="fk_movimento")
-	private long fkMovimento; 
-	
+	public BigDecimal getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(BigDecimal saldo) {
+		this.saldo = saldo;
+	}
+
+	public String getDataVenda() {
+		return dataVenda;
+	}
+
+	public void setDataVenda(String dataVenda) {
+		this.dataVenda = dataVenda;
+	}
+
 	public String getFuncionario() {
 		return funcionario;
 	}
@@ -54,30 +68,20 @@ public class Abertura {
 	public void setId(long id) {
 		this.id = id;
 	}
-
-	public LocalDateTime getDataFechamento() {
-		return dataFechamento;
+	
+	public String getDateTime(){
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date data = new Date();
+		return dateFormat.format(data);
 	}
 
-	public void setDataFechamento(LocalDateTime dataFechamento) {
-		this.dataFechamento = dataFechamento;
-	}
-
-	public BigDecimal getSaldoInicial() {
-		return saldoInicial;
-	}
-
-	public void setSaldoInicial(BigDecimal saldoInicial) {
-		this.saldoInicial = saldoInicial;
-	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((dataFechamento == null) ? 0 : dataFechamento.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((saldoInicial == null) ? 0 : saldoInicial.hashCode());
+		result = prime * result + ((saldo == null) ? 0 : saldo.hashCode());
 		return result;
 	}
 
@@ -90,25 +94,23 @@ public class Abertura {
 		if (getClass() != obj.getClass())
 			return false;
 		Abertura other = (Abertura) obj;
-		if (dataFechamento == null) {
-			if (other.dataFechamento != null)
-				return false;
-		} else if (!dataFechamento.equals(other.dataFechamento))
-			return false;
+		
 		if (id != other.id)
 			return false;
-		if (saldoInicial == null) {
-			if (other.saldoInicial != null)
+		if (saldo == null) {
+			if (other.saldo != null)
 				return false;
-		} else if (!saldoInicial.equals(other.saldoInicial))
+		} else if (!saldo.equals(other.saldo))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Abertura [id=" + id + ", dataFechamento=" + dataFechamento + ", saldoInicial=" + saldoInicial + "]";
+		return "Abertura [id=" + id + ", saldo=" + saldo + ", funcionario=" + funcionario + "]";
 	}
+
+	
 	
 	
 }

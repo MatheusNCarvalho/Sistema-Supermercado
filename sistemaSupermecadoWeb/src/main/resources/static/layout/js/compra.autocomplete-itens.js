@@ -17,6 +17,19 @@ $('#js-adicionar-item-tabela').on('click',function(e) {
 				codigo: msg
 			},
 			success :function(i,data) {
+				let ok;
+				for(let contador=1;contador<count;contador++){
+					let valor = $('.produtoId.'+contador).val();
+					if(valor==i.id)
+					{
+					let itemIgualAdicionar=$('#q_'+contador+'').val()
+					$('#q_'+contador+'').val(parseFloat(itemIgualAdicionar)+1)
+					return ok++;
+					}
+
+					
+				}
+				if(ok!=0){
 				$("#produtosAdicionar").append(
 						'<div class="bw-tabela-item">'+
 						'<div class="bw-tabela-item__coluna  bw-tabela-item__coluna--detalhes">'+
@@ -38,7 +51,8 @@ $('#js-adicionar-item-tabela').on('click',function(e) {
 					'</div>');
 				$('#tamanhoArray').val(count);
 				
-			return count++;	
+			return count++;
+				}
 			},
 			error: function(e){
 				console.log("ERROR: ", e);

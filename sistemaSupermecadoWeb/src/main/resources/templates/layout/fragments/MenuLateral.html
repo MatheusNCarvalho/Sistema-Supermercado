@@ -50,7 +50,7 @@
 			        </ul>
 		</li>
 
-        <li class="aw-menu__item  is-active">
+        <li class="aw-menu__item ">
           <a href="#">
             <i class="fa  fa-fw  fa-database"></i><span>Cadastros</span>
             <i class="aw-menu__navigation-icon  fa"></i>
@@ -63,10 +63,10 @@
               <li class="aw-menu__item  aw-menu__item--link">
             	<a th:href="@{/clientes/novo}">Cadastro de Cliente</a>
             </li>
-            <li class="aw-menu__item  aw-menu__item--link  is-active" sec:authorize-url="/fornecedores">
+            <li class="aw-menu__item  aw-menu__item--link" sec:authorize-url="/fornecedores">
             	<a th:href="@{/fornecedores/}">Pesquisa de Fornecedores</a>
             </li>
-            <li class="aw-menu__item  aw-menu__item--link  is-active" sec:authorize-url="/clientes">
+            <li class="aw-menu__item  aw-menu__item--link " sec:authorize-url="/clientes">
             	<a th:href="@{/clientes/}">Pesquisa de Clientes</a>
             </li>
             
@@ -74,7 +74,7 @@
           </ul>
         </li>
         
-        <li class="aw-menu__item  is-active">
+        <li class="aw-menu__item ">
           <a href="#">
             <i class="fa  fa-fw  fa-truck"></i><span>Estoque</span>
             <i class="aw-menu__navigation-icon  fa"></i>
@@ -82,7 +82,7 @@
       
           <ul class="aw-menu__list  aw-menu__list--sublist">
             <li class="aw-menu__item  aw-menu__item--link"><a th:href="@{/produtos/novo}">Cadastro de Produtos</a></li>
-            <li class="aw-menu__item  aw-menu__item--link  is-active"><a th:href="@{/produtos}">Pesquisa de Produtos</a></li>
+            <li class="aw-menu__item  aw-menu__item--link "><a th:href="@{/produtos}">Pesquisa de Produtos</a></li>
             
             
           </ul>
