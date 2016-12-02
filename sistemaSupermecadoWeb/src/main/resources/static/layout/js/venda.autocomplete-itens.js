@@ -17,6 +17,21 @@ $('#js-adicionar-item-tabela').on('click',function(e) {
 				codigo: msg
 			},
 			success :function(i,data) {
+				// variavel para saber se item for igual
+				let ok;
+				// for que percorre todos itens e verifica  cada item se e igual ao adicionado
+				for(let contador=1;contador<count;contador++){
+					let valor = $('.produtoId.'+contador).val();
+					if(valor==i.id)
+					{
+					let itemIgualAdicionar=$('#q_'+contador+'').val()
+					$('#q_'+contador+'').val(parseFloat(itemIgualAdicionar)+1)
+					return ok++;
+					}
+
+					
+				}
+				
 				$("#produtosAdicionar").append(
 						'<div class="bw-tabela-item">'+
 						'<div class="bw-tabela-item__coluna  bw-tabela-item__coluna--detalhes">'+
