@@ -53,7 +53,7 @@ $(function() {
         	}
       
         	else {
-        		obj ['v'+cot] = "55"//$("#v_"+count).val()
+        		obj ['v'+cot] = $("#v_"+count).text()
         		obj ['q'+cot]= $("#q_"+count).val()
         		obj['f'+cot]= $('.produtoId.'+count).val()      		
         	}

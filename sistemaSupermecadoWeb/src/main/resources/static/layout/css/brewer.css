@@ -253,7 +253,10 @@
 	display: block;
 	font-weight: 200;
 }
-
+.bw-tabela-venda-campo-valor-venda{
+	font-weight: 300;
+	font-size: 1.6em;
+}
 .bw-tabela-venda-campo-quantidade {
 	width: 40px;
 	text-align: right;
@@ -270,12 +273,12 @@
 
 .bw-tabela-cerveja-valor-medio {
 	font-weight: 300;
-	font-size: 1.3em;
+	font-size: 1.6em;
 }
 
 .bw-tabela-cerveja-valor-grande {
-	font-weight: 300;
-	font-size: 1.6em;
+	font-weight: 900;
+	font-size: 1.8em;
 }
 .botao-esquerda{
 	float: left;

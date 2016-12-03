@@ -17,19 +17,32 @@ $('#js-adicionar-item-tabela').on('click',function(e) {
 				codigo: msg
 			},
 			success :function(i,data) {
-				let ok;
+				let ok=false;
 				for(let contador=1;contador<count;contador++){
 					let valor = $('.produtoId.'+contador).val();
 					if(valor==i.id)
 					{
 					let itemIgualAdicionar=$('#q_'+contador+'').val()
-					$('#q_'+contador+'').val(parseFloat(itemIgualAdicionar)+1)
-					return ok++;
+					$('#q_'+contador+'').val(parseInt(itemIgualAdicionar)+1)
+					$('#somaId_'+contador).html('R$ '+$('#v_'+contador).val()*$('#q_'+contador).val())
+					let pegarTamanhoArray=$('#tamanhoArray').val();
+					let novoValor=0;
+					for(let count=1;count<=pegarTamanhoArray;count++){
+								let valor = $('#somaId_'+count).text()
+								valor = valor.replace("R$","")
+								valor = parseFloat(valor)
+								if(!valor==""||valor==null){
+									novoValor = novoValor+valor
+								}
+							}
+
+					$('.aw-box__value.valor').replaceWith('<div class="aw-box__value valor">R$'+novoValor+'</div>')	
+					
+					return true;
 					}
 
-					
 				}
-				if(ok!=0){
+				if(ok==false){
 				$("#produtosAdicionar").append(
 						'<div class="bw-tabela-item">'+
 						'<div class="bw-tabela-item__coluna  bw-tabela-item__coluna--detalhes">'+

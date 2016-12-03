@@ -34,6 +34,7 @@ $(function() {
 			data : JSON.stringify(obj),
 			dataType : 'json',
 			success : function(data) {
+				window.location.reload(true);
 				console.log("SUCCESS: ",data);
 			},
 			error : function(e) {
