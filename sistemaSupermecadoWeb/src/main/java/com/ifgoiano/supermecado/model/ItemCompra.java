@@ -39,8 +39,6 @@ public class ItemCompra {
 		
 		@Column(name="fk_produto")
 		private int fkProduto;
-
-		
 		
 		
 		
