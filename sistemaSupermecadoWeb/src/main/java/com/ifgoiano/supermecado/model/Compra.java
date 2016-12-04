@@ -1,5 +1,9 @@
 package com.ifgoiano.supermecado.model;
 
+
+
+
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -18,6 +22,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.joda.time.DateTime;
+
+
+
+
+
 
 
 @Entity
@@ -31,7 +41,7 @@ public class Compra {
 		private long idCompra;
 	  
 		@Column(name = "data_hora")
-		private String dataCompra;
+		private Date dataCompra;
 		
 		@ManyToOne
 		@JoinColumn(name="fk_fornecedor",referencedColumnName="pk_fornecedor", insertable=false, updatable=false)
@@ -41,14 +51,12 @@ public class Compra {
 		private int fkFornecedor;
 		
 		private String usuario;
-		
-		
-		
-		public String getDataCompra() {
+
+		public Date getDataCompra() {
 			return dataCompra;
 		}
 
-		public void setDataCompra(String dataCompra) {
+		public void setDataCompra(Date dataCompra) {
 			this.dataCompra = dataCompra;
 		}
 
@@ -79,13 +87,7 @@ public class Compra {
 			this.idCompra = idCompra;
 		}
 
-		public String getDataDaCompra() {
-			return dataCompra;
-		}
-
-		public void setDataDaCompra(String dataDaCompra) {
-			this.dataCompra = dataDaCompra;
-		}
+		
 
 		public Fornecedor getFornecedor() {
 			return fornecedor;
@@ -133,7 +135,7 @@ public class Compra {
 
 		@Override
 		public String toString() {
-			return "Compra [idCompra=" + idCompra + ", dataCompra=" + dataCompra + ", fornecedor=" + fornecedor
+			return "Compra [idCompra=" + idCompra + ", dataCompra=" + ", fornecedor=" + fornecedor
 					+ ", fkFornecedor=" + fkFornecedor + ", itens=" + itens + "]";
 		}
 		

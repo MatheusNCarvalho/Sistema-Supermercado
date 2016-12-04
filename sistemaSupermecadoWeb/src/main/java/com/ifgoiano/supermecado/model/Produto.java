@@ -10,12 +10,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
+
 
 @Entity
 @Table(name = "produtos")
@@ -62,6 +65,7 @@ public class Produto {
 	private BigDecimal qtdMinimo;
 	
 	
+	
 	@Column(name = "fk_categoria")
 	private int idCategoria ;
 
@@ -69,6 +73,8 @@ public class Produto {
 	@JoinColumn(name = "fk_categoria", referencedColumnName="pk_categoria", insertable=false, updatable=false)
 	private Categoria categoria;
 	
+	
+
 	public BigDecimal getQtdEstoque() {
 		return qtdEstoque;
 	}
