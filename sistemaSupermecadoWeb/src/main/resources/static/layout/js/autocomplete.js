@@ -10,6 +10,7 @@ $(function(){
 			codigo: idCompra
 		},
 		success :function(i,data){
+			alert(JSON.stringify(i));
 			for(let count=1; count<100; count++)
 			{
 				alert(JSON.stringify(i));

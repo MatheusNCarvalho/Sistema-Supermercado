@@ -1,6 +1,10 @@
 
 let count=1;
 $('#js-adicionar-item-tabela').on('click',function(e) {
+		let divCarinho = document.querySelector(".carrinho");
+		divCarinho.classList.remove("has-error");
+		$('.vali').remove();
+		
 		 let val = $('#nomeProduto').val();
 	        let id = $('#produtos option').filter(function() {
 	            return this.value == val;
@@ -70,5 +74,10 @@ $('#js-adicionar-item-tabela').on('click',function(e) {
 			error: function(e){
 				console.log("ERROR: ", e);
 			}
+			
+			  
 		});
+		
+		
+       
  });

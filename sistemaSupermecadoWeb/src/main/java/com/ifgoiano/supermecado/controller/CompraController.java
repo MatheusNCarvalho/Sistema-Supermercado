@@ -11,6 +11,9 @@ import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,6 +27,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.ifgoiano.supermecado.model.Compra;
 import com.ifgoiano.supermecado.model.Fornecedor;
 import com.ifgoiano.supermecado.model.ItemCompra;
@@ -82,7 +88,7 @@ public class CompraController {
 		
 		//Regex com a condição de ","
 		String regex = "\"(,)\"";
-		
+		System.out.println(regex);
 		//Inicia um contador para usar no array onde os item virao na msm sequencia
 		int valorCount=1;
 		int qtdCount=2;
@@ -91,8 +97,11 @@ public class CompraController {
 		//Divide o JSON em um array utilizando a regex que ira separa-lo quando tiver "," 
 		//e cada elemento sera guardado em uma posição de array
 		array = i.split(regex);
+		
+		
 				//Utilizando o substring para retirar a parte antes do fornecedor
 				String fkfornecedor = array[0].substring(6);
+				System.out.println(fkfornecedor);
 				
 				//Pegado o usuario logado e setando na variavel
 				String teste = (String) SecurityContextHolder.getContext().getAuthentication().getName();
@@ -117,7 +126,7 @@ public class CompraController {
 				
 				System.out.println(">>>"+dataSistemaDateTime);*/
 				
-				
+				//AQUI ESTA VALENDO PARA SALVAR DATA NO BANCO DE DADOS
 				Date dataSistema = new Date();
 				SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 				String dataSistemaStr = formater.format(dataSistema);
@@ -130,12 +139,6 @@ public class CompraController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-			
-				
-				
-				
-				
 				
 				//Salvando a compra	
 				compras.save(compra);
@@ -190,33 +193,66 @@ public class CompraController {
 														// e trabalhamos com ela
 	   //estamos recuperando o codigo do bando de dados
 				
-				Compra compra = compras.todasCompra(codigo);
-				List<ItemCompra> itens = is.todasCompra(codigo);
+			Compra compra = compras.todasCompra(codigo);
+			//ESTOU PEGANDO A DATA DO SISTEMA
 			DateTime dataSistema = new DateTime();
-			DateTime dataCompra = new DateTime(compra.getDataCompra());
-			
+			//ESTOU CONVERTENDO O TIPO DATE PARA DATETIME
+			DateTime dataCompra = new DateTime(compra.getDataCompra());	
+			//FAÇO COMPARAÇÃO EM DIAS
 			int dias = Days.daysBetween(dataCompra, dataSistema).getDays();
-			//System.out.println(dias + " "+dataCompra +" " + dataSistema);
+			
 		
 				
 		ModelAndView mv = new ModelAndView("compra/CadastroVenda2");		
 		mv.addObject("compra",compra);//passamos o que recuperamos para a view
 		mv.addObject("dias",dias);
-		mv.addObject("itens",itens);
+	
 		return mv;
 		
 	}
 	
 	
 	@RequestMapping(value="/adicionar",consumes = { MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody List<ItemCompra> edicaoAdicionar(String codigo) {
-		System.out.println(codigo);
+	public @ResponseBody String edicaoAdicionar(String codigo) {
+		
+		System.out.println(">>"+codigo);
 		long i = Long.parseLong(codigo);
+		 Gson gson = new Gson();
 		//validarTamanhoNome(codigo);
 		
+		//String json = gson.toJson(product);
 		//return produtos.findByCodigoBarrasContainingIgnoreCase(codigo);
-		System.out.println(""+ is.todasCompra(i));
-		return  is.todasCompra(i);
+		List<ItemCompra> itens = is.todasCompra(i);
+		
+
+		JSONArray array = new JSONArray();
+		int cont=1;
+		
+		for(ItemCompra compra : itens){
+			//System.out.println("1 "+compra.getProduto().getCodigoBarras());
+				try{
+				
+				JSONObject jsonObj = new JSONObject();
+				jsonObj.put("nome"+cont, compra.getProduto().getNome());
+				jsonObj.put("codigoBarras"+cont, compra.getProduto().getCodigoBarras());
+				jsonObj.put("codigoBarras"+cont, compra.getProduto().getCodigoBarras());
+				array.put(jsonObj);
+				 cont ++;
+				 System.out.println(""+array);
+				}
+				catch(JSONException e){
+					
+				}
+			
+			 
+		}
+		//System.out.println(itens.toString());
+		//String json = gson.toJson(itens);
+		//String json_string = gson.toString();
+		//System.out.println(json_string);
+		//System.out.println(itens.toString());
+		
+		return  "ok";
 	}
 	
 }

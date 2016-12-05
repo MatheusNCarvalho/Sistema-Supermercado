@@ -106,6 +106,8 @@ public class ItemCompra {
 			return result;
 		}
 
+		
+
 		@Override
 		public String toString() {
 			return "ItemCompra [idItem=" + idItem + ", qtd=" + qtd + ", valorUnitario=" + valorUnitario + ", compra="

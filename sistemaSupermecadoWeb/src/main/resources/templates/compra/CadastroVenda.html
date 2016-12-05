@@ -23,8 +23,9 @@
 		</div>
 	</div>
 	<div class="container-fluid">
-		<form method="POST" th:object="${compra}" th:action="@{/compras/nova}">
-			
+		<form method="POST" th:object="${compra}" th:action="@{/compras/nova}" onsubmit="return validacaoFrom()">
+			<div class="vali">
+			</div>
 			<div class="row">
 				<div class="col-sm-4">
 					<div class="aw-box">
@@ -60,7 +61,7 @@
 			</div>
 
 			<div class="row">
-				<div class="form-group  col-sm-5  bw-required" brewer:classforerror="compra.codigo">
+				<div class="form-group  col-sm-5  bw-required produto" brewer:classforerror="compra.codigo">
 					<label class="control-label" for="nomeCliente">Fornecedor</label>
 	
 				      <input list="fornecedores" id="nomeFornecedor" type="text" class="form-control" th:field="*{fornecedor}" />
@@ -75,18 +76,15 @@
 				
 				<div class="form-group  col-sm-7 bw-required">
 					<label class="control-label" for="valorFrete">Produto</label>
-					<div class="input-group">
-							<input list="produtos" id="nomeProduto" type="text" class="form-control"
-								placeholder="Pesquise um produto pelo nome ou codigo de barras" autofocus="autofocus" />
-								   	<datalist id="produtos">
-  <option  th:each="produto : ${produto} " th:attr='data-id=${produto.id} ' th:value="${produto.nome}" th:text="${produto.codigoBarras}"/>
-	
-</datalist>
-										      <input name="codigoProduto" id="codigoProduto" type="hidden"  />
+					<div class="input-group carrinho">
+							<input list="produtos" id="nomeProduto" type="text" class="form-control" placeholder="Pesquise um produto pelo nome ou codigo de barras" autofocus="autofocus" />
+						   	<datalist id="produtos">
+										<option  th:each="produto : ${produto} " th:attr='data-id=${produto.id} ' th:value="${produto.nome}" th:text="${produto.codigoBarras}"/>	
+							</datalist>
+						      <input name="codigoProduto" id="codigoProduto" type="hidden"  />
 						
 								<span class="input-group-btn">
-				        <button class="btn  btn-default  js-tooltip" id="js-adicionar-item-tabela" type="button" title="Pesquisa avançada"
-				        		>
+				        <button class="btn  btn-default  js-tooltip" id="js-adicionar-item-tabela" type="button" title="Pesquisa avançada">
 				        	<i class="glyphicon  glyphicon-plus"></i>
 				        </button>
 				      </span>
@@ -143,6 +141,7 @@
 </section>
 
 <th:block layout:fragment="javascript-extra">
+	<script th:src="@{/layout/js/javascript.js}"></script>
 	<script th:src="@{/layout/js/compra.autocomplete-itens.js}"></script>   	
 	<script th:src="@{/layout/js/atualizar-valores-compra.js}"></script>	
 	<script th:src="@{/layout/js/compra-enviar.js}"></script>

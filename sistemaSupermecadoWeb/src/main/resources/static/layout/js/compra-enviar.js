@@ -1,46 +1,87 @@
 $(function() {
     $('#enviar').on('click',function(e) {
-        e.preventDefault();
-        var pegarTamanhoArray=$('#tamanhoArray').val();
-
- 
-        var vals = $('#nomeFornecedor').val()
-	        var fornecedor = $('#fornecedores option').filter(function() {
-	            return this.value == vals;
-	        }).data('fornecedor');
-	        var fornecedorId = fornecedor ? '' + fornecedor : 'No Match';
-	        
-      //  var token = $("#token").val()
-        var obj = {}
-		obj ['d']= fornecedorId;
-		let cot = 101;
-        for (count=1; count <= pegarTamanhoArray; count++){
-        	if($('.produtoId.'+count).val()==""||$('.produtoId.'+count).val()==null){
-      
-        	}
-      
-        	else {
-        		obj ['v'+cot] =$("#v_"+count).val()
-        		obj ['q'+cot]= $("#q_"+count).val()
-        		obj['f'+cot]= $('.produtoId.'+count).val()      		
-        	}
-     		cot++;
-        }
+        e.preventDefault(); 
         
-		$.ajax({
-			type : "POST",
-			contentType : "application/json",
-			url : "/compras/salvar",
-			data : JSON.stringify(obj),
-			dataType : 'json',
-			success : function(data) {
-				window.location.reload(true);
-				console.log("SUCCESS: ",data);
-			},
-			error : function(e) {
-			console.log("ERROR: ", e);
-			}
-			})
-        console.log(obj)
+        var pegarTamanhoArray=$('#tamanhoArray').val();
+        let divCarinho = document.querySelector(".carrinho");
+        let divNomeProduto = document.querySelector(".produto");
+        let msg=0;
+        let val = $('#nomeProduto').val();
+        let id = $('#produtos option').filter(function() {
+            return this.value == val;
+        }).data('id');
+        msg = id;
+        
+        if( pegarTamanhoArray ==""|| msg==undefined){
+        	//$('.tab-content').html('Tem certeza que deseja excluir o título <strong>');
+        	divCarinho.classList.add("has-error");
+        	divNomeProduto.classList.add("has-error");
+        	
+        	/*$('.vali').append( '<div class="alert alert-danger" >'+
+			'<div th:each="detailedError : ${#fields.detailedErrors()}">'+
+				'<span> Por favor Adicione um Produto</span>'+
+			'</div>'+
+			
+        	'</div>');*/
+        }
+        else
+        {       	 
+        	divNomeProduto.classList.remove("has-error");
+        	
+        			var vals = $('#nomeFornecedor').val()
+			        var fornecedor = $('#fornecedores option').filter(function() {
+			            return this.value == vals;
+			        }).data('fornecedor');
+        			
+			        var fornecedorId = fornecedor ? '' + fornecedor : 'No Match';;
+			        
+			        
+			        if(fornecedorId == undefined ){
+			        	
+			        	divNomeProduto.classList.add("has-error");
+			        }
+			        else{
+			        	
+			            //  var token = $("#token").val()
+				        var obj = {}
+						obj ['d']= fornecedorId;
+						let cot = 101;
+				        for (count=1; count <= pegarTamanhoArray; count++){
+				        	if($('.produtoId.'+count).val()==""||$('.produtoId.'+count).val()==null){
+				      
+				        	}
+				      
+				        	else {
+				        		obj ['v'+cot] =$("#v_"+count).val()
+				        		obj ['q'+cot]= $("#q_"+count).val()
+				        		obj['f'+cot]= $('.produtoId.'+count).val()      		
+				        	}
+				     		cot++;
+				        }
+				        
+						$.ajax({
+							type : "POST",
+							contentType : "application/json",
+							url : "/compras/salvar",
+							data : JSON.stringify(obj),
+							dataType : 'json',
+							success : function(data) {
+								window.location.reload(true);
+								console.log("SUCCESS: ",data);
+							},
+							error : function(e) {
+							console.log("ERROR: ", e);
+							}
+							})
+				        console.log(obj)
+		        	
+			        	
+			        }
+			        
+		  
+        }     
+       
+ 
+ 
     });
 });
