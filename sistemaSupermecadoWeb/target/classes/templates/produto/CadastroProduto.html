@@ -28,7 +28,9 @@
 				 	<div layout:include="layout/fragments/MensagemGeral"></div>
     				<div layout:include="layout/fragments/MensagemErro"></div>
 				<input type="hidden" th:field="*{id}" />
-
+				<input type="hidden" th:field="*{valorUnitario}" />
+				<input type="hidden" th:field="*{qtdEstoque}" />
+		
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('codigoBarras')} ? has-error">
 					<label for="input-produto-codigo">Codigo de Barras</label> <input

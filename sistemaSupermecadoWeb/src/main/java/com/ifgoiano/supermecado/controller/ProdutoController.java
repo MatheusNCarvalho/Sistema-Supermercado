@@ -73,10 +73,16 @@ public class ProdutoController {
 			return CADASTRO_VIEW;
 
 		}
-
+		if(prod.getId()!=0){
+			produtos.save(prod);
+			attributes.addFlashAttribute("mensagem", "Produto Atualizado com sucesso!");
+			return "redirect:/produtos/novo";
+		}else{
+		prod.setQtdEstoque(0);
+		prod.setValorUnitario(0);
 		produtos.save(prod);
 		attributes.addFlashAttribute("mensagem", "Produto salvo com sucesso!");
-
+		}
 		return "redirect:/produtos/novo";
 
 	}

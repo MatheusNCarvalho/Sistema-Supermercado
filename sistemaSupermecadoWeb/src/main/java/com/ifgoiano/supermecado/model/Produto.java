@@ -42,14 +42,14 @@ public class Produto {
 	
 	
 	@Column(name = "valor_unitario")
-	private BigDecimal valorUnitario;
+	private int valorUnitario;
 	
 	@NotNull(message="O tipo da medida é obrigatório !")
 	@Column(name = "tipo_medida")
 	private String tipoMedida;
 	
 	@Column(name="qtd_Estoque")
-	private BigDecimal qtdEstoque;
+	private int qtdEstoque;
 	
 	@NotNull(message="A quantidade medida é obrigatória !")
 	@Column(name= "qtd_medida")
@@ -75,12 +75,12 @@ public class Produto {
 	
 	
 
-	public BigDecimal getQtdEstoque() {
+	public int getQtdEstoque() {
 		return qtdEstoque;
 	}
 
-	public void setQtdEstoque(BigDecimal qtdEstoque) {
-		this.qtdEstoque = qtdEstoque;
+	public void setQtdEstoque(int i) {
+		this.qtdEstoque = i;
 	}
 
 	public String getTipoMedida() {
@@ -140,12 +140,12 @@ public class Produto {
 		this.nome = nome;
 	}
 
-	public BigDecimal getValorUnitario() {
+	public int getValorUnitario() {
 		return valorUnitario;
 	}
 
-	public void setValorUnitario(BigDecimal valorUnitario) {
-		this.valorUnitario = valorUnitario;
+	public void setValorUnitario(int i) {
+		this.valorUnitario = i;
 	}
 
 	
