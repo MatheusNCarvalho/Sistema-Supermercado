@@ -3,8 +3,11 @@ package com.ifgoiano.supermecado.controller;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import org.hibernate.cfg.FkSecondPass;
 import org.joda.time.DateTime;
@@ -39,6 +42,7 @@ import com.ifgoiano.supermecado.repository.Fechamentos;
 import com.ifgoiano.supermecado.repository.Fornecedores;
 import com.ifgoiano.supermecado.repository.ItemCompras;
 import com.ifgoiano.supermecado.repository.Produtos;
+import com.mysql.fabric.xmlrpc.base.Array;
 import com.ifgoiano.supermecado.repository.Aberturas;
 
 
@@ -212,47 +216,46 @@ public class CompraController {
 	}
 	
 	
-	@RequestMapping(value="/adicionar",consumes = { MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody String edicaoAdicionar(String codigo) {
+	@RequestMapping(value="/adicionar",method=RequestMethod.GET)
+	public @ResponseBody String valorRetornar(String codigo) {
 		
-		System.out.println(">>"+codigo);
+		
+	
+		
 		long i = Long.parseLong(codigo);
-		 Gson gson = new Gson();
-		//validarTamanhoNome(codigo);
+	//	Gson gson = new Gson();
+	//	validarTamanhoNome(codigo);
 		
-		//String json = gson.toJson(product);
-		//return produtos.findByCodigoBarrasContainingIgnoreCase(codigo);
-		List<ItemCompra> itens = is.todasCompra(i);
-		
+		//	String json = gson.toJson(product);
+		//produtos.findByCodigoBarrasContainingIgnoreCase(codigo);
+	List<ItemCompra> itens = is.todasCompra(i);
+	//System.out.print("s"+itens);
+	//	return "ok";
 
-		JSONArray array = new JSONArray();
-		int cont=1;
-		
+		//ArrayList<String> list = new ArrayList<String>();
+		int cont=0;
+		String ok="";
 		for(ItemCompra compra : itens){
+			//	list.add("categoria="+compra.getProduto().getCodigoBarras());
+				//list.add(compra.getProduto().getNome());
 			//System.out.println("1 "+compra.getProduto().getCodigoBarras());
-				try{
-				
-				JSONObject jsonObj = new JSONObject();
-				jsonObj.put("nome"+cont, compra.getProduto().getNome());
-				jsonObj.put("codigoBarras"+cont, compra.getProduto().getCodigoBarras());
-				jsonObj.put("codigoBarras"+cont, compra.getProduto().getCodigoBarras());
-				array.put(jsonObj);
-				 cont ++;
-				 System.out.println(""+array);
-				}
-				catch(JSONException e){
-					
-				}
-			
+				ok+=compra.getProduto().getCodigoBarras()+",";
+				ok+=compra.getProduto().getNome()+",";
+				ok+=compra.getProduto().getCategoria().getNome()+",";
+				ok+=compra.getQtd()+",";
+				ok+=compra.getValorUnitario()+",";	
+				cont++;
 			 
 		}
 		//System.out.println(itens.toString());
 		//String json = gson.toJson(itens);
 		//String json_string = gson.toString();
-		//System.out.println(json_string);
+		//System.out.println(json_string); 
 		//System.out.println(itens.toString());
-		
-		return  "ok";
+	//	System.out.println(array);
+		return ok+cont;
+	
 	}
+
 	
 }
