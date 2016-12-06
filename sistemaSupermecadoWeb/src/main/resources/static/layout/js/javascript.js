@@ -16,17 +16,15 @@ $('#confirmacaoExclusaoModal').on('show.bs.modal', function(event) {
 });
 $('#modalMovimentoCaixa').on('show.bs.modal',function(event){
 	let button = $(event.relatedTarget);
-	let nomeModal = button.data('id');
-	alert(nomeModal)
+	let nomeModal = button.data('nomemodal');
+	$('.modal-title.caixa').html('<strong>'+nomeModal+'</strong>')
 	
-	let modal=$(this);
-	let form = modal.find('form');
-	let action = button.data('action');
-	if(!action.endsWith('/')){
-		action+='/';
-	}
 
-	$('.modal-title').text("asdsadasdasdsda").fadeIn()
+	
+});
+$('#modalMovimentoCaixa').on('hidden.bs.modal',function(event){
+	$('body').css("paddingRight","0px")
+
 	
 });
 
