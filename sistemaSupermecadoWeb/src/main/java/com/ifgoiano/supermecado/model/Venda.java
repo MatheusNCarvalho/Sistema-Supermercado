@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.joda.time.DateTime;
+
 
 @Entity
 @Table(name="vendas")
@@ -35,7 +37,7 @@ private Cliente cliente;
 private int fkCliente;
 
 @Column(name = "data_hora")
-private String dataVenda;
+private Date dataVenda;
 
 private String usuario;
 
@@ -91,12 +93,12 @@ public void setFkCliente(int fkCliente) {
 }
 
 
-public String getDataVenda() {
+public Date getDataVenda() {
 	return dataVenda;
 }
 
 
-public void setDataVenda(String dataVenda) {
+public void setDataVenda(Date dataVenda) {
 	this.dataVenda = dataVenda;
 }
 
@@ -106,11 +108,7 @@ public String toString() {
 	return "Venda [idVenda=" + idVenda + ", dataVenda=" + dataVenda + "]";
 }
 
-public String getDateTime(){
-	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	Date data = new Date();
-	return dateFormat.format(data);
-}
+
 
 @Override
 public int hashCode() {
