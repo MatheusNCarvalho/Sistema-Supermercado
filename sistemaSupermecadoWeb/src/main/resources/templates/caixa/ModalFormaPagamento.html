@@ -5,54 +5,61 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:data="http://www.thymeleaf.org/extras/data"
 	xmlns:brewer="http://brewer.algaworks.com"
-	layout:decorator="layout/LayoutPadrao"
->
+	layout:decorator="layout/LayoutPadrao">
 
-<div class="modal fade" id="formaPagamentoModal" tabindex="-1" th:fragment="modal" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="formaPagamentoModal" tabindex="-1"
+	th:fragment="modal" data-backdrop="static" data-keyboard="false">
 	<div class="modal-dialog">
-	
+
 		<form class="form" th:action="@{/aberturas}">
-			
+
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title"><strong>Forma de pagamento</strong></h4>
+					<h4 class="modal-title">
+						<strong>Forma de pagamento</strong>
+					</h4>
 				</div>
-									<div class="alert  alert-danger  hidden  js-mensagem-cadastro-rapido-estilo" role="alert"></div>
-				
+				<div
+					class="alert  alert-danger  hidden  js-mensagem-cadastro-rapido-estilo"
+					role="alert"></div>
+
 				<div class="modal-body">
-							<div class="form-group row">
-			
-									
-											<div class="col-sm-3">
-						<label for="qtdParcelas">Metodo</label> <select
-							class="form-control" id="qtdParcelas" name="qtdParcelas" >
-							<option value="0"></option>
-							<option value="1">A vista</option>
-							<option value="2">Parcelado</option>
-						</select>
+					<div class="form-group row">
+
+
+						<div class="col-sm-4">
+							<label for="metodoPagamento">Metodo</label> <select
+								class="form-control" id="metodoPagamento" name="metodoPagamento">
+								<option value="0"></option>
+								<option value="0x">A vista</option>
+								<option value="2">Parcelado</option>
+							</select>
+						</div>
+						<div class="col-sm-4" id="parcelasId"></div>
 					</div>
-					<div class="col-sm-3">
-						<label for="qtdParcelas">Parcelas</label> <select
-							class="form-control" id="qtdParcelas" name="qtdParcelas" >
-							<option value="0"></option>
-							<option value="1">1 vez</option>
-							<option value="2">2 vez</option>
-						</select>
+					<div class="form-group row">
+
+						<div class="col-sm-4">
+							<label for="nome">Dinheiro</label> <input class="form-control"
+								id="saldoInicial" type="text" name="saldoInicial" />
+						</div>
+						<div class="col-sm-4">
+
+							<label for="nome">Troco</label> <input class="form-control"
+								id="saldoInicial" type="text" name="saldoInicial" />
+						</div>
 					</div>
-	
-								</div>		
+
 				</div>
-				
+
 				<div class="modal-footer">
-				<button type="submit" id="enviarValorInicial" class="btn btn-primary">Enviar</button>
-				<button type="reset" class="btn btn-default">Limpar</button>
-				<a th:href="@{/home/index}">
-				<button type="button" class="btn btn-danger">Cancelar</button>
-				</a>
+					<button type="submit" id="enviar" class="btn btn-primary">Enviar</button>
+					<button type="reset" class="btn btn-default">Limpar</button>
+					<button type="button" class="btn btn-danger">Cancelar</button>
 				</div>
 			</div>
 		</form>
 
 	</div>
-</div>		
+</div>
 </html>
