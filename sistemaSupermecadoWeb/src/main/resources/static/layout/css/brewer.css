@@ -283,6 +283,13 @@
 .botao-esquerda{
 	float: left;
 }
+.btn.btn-danger.fexa{
+	float:right;
+}
+.btn.fexa{
+	float:right;
+	margin-bottom: 15px;
+}
 
 @media (min-width: 768px) { /* screen-sm-min */
 	.bw-tabela-item__coluna {

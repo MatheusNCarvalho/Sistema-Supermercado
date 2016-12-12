@@ -59,7 +59,13 @@ $(function() {
         	}
      		cot++;
         }
-        
+  
+        if($("#qtdParcelas").val()==""||$("#qtdParcelas").val()==null){
+        	obj['z9']=$("#metodoPagamento").val()+''+$('.aw-box__value.valor').text().replace("R$","")
+        }
+        else{
+        	   obj['z9']=$("#qtdParcelas").val();
+        }
 		$.ajax({
 			type : "POST",
 			contentType : "application/json",

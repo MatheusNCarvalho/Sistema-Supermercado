@@ -1,6 +1,10 @@
 package com.ifgoiano.supermecado.controller;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ifgoiano.supermecado.model.Produto;
 import com.ifgoiano.supermecado.model.Cliente;
+import com.ifgoiano.supermecado.model.FinanceiroEntrada;
 import com.ifgoiano.supermecado.model.ItemCompra;
 import com.ifgoiano.supermecado.model.ItemVenda;
 import com.ifgoiano.supermecado.model.Venda;
@@ -23,6 +28,7 @@ import com.ifgoiano.supermecado.repository.Produtos;
 import com.ifgoiano.supermecado.repository.Aberturas;
 import com.ifgoiano.supermecado.repository.Clientes;
 import com.ifgoiano.supermecado.repository.Fechamentos;
+import com.ifgoiano.supermecado.repository.FinanceiroEntradas;
 import com.ifgoiano.supermecado.repository.Vendas;
 
 @Controller
@@ -46,6 +52,9 @@ public class VendaController {
 	
 	@Autowired
 	private Fechamentos fechamentos;
+	
+	@Autowired
+	private FinanceiroEntradas financeiroEntradas;
 	
 	@RequestMapping("/novo")
 	public ModelAndView novo() {
@@ -102,7 +111,17 @@ public class VendaController {
 		}
 		//Convertendo e setando o id do cliente e salvando a data da compra
 		venda.setFkCliente(Integer.parseInt(fkCliente));
-		venda.setDataVenda(venda.getDateTime());
+		Date dataSistema = new Date();
+		SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		String dataSistemaStr = formater.format(dataSistema);
+		try {
+			java.sql.Date dataSistemaDate = new java.sql.Date(formater.parse(dataSistemaStr).getTime());
+			venda.setDataVenda(dataSistemaDate);
+			System.out.println(">>>"+dataSistemaDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		venda.setFkAbertura(aberturas.findId(teste));
 		//Salvando a compra	
 		vendas.save(venda);
@@ -135,14 +154,49 @@ public class VendaController {
 			valorCount=valorCount+3;
 			qtdCount = qtdCount+3;
 			produtoCount = produtoCount +3;
-			
 		
 			//Verificar se quando incrementa o valor do contador para nao ultrapassar o tamanho do array
 			if(valorCount>=array.length||qtdCount>=array.length||produtoCount>=array.length){
 				break;
 			}
 		}
+		FinanceiroEntrada finaceiroEntrada = new FinanceiroEntrada();
+		String array2[]= new String[32];
+		// array2[0] salva quantidade de vezes e array2[1] salva o valor de cada
+		array2=array[array.length-1].substring(5).replace("\"}", "").split("x");
+		System.out.println("valor"+array2[1]);
+		System.out.println("Parcelas"+array2[0]);
+		Date dataSistemaDate= new Date();
+			int parcela = Integer.parseInt(array2[0]);
+			Double valor = Double.parseDouble(array2[1]);
+			if(parcela==0){
+				finaceiroEntrada.setDataEmissao(dataSistemaDate);
+				finaceiroEntrada.setDataVencimento(dataSistemaDate);
+				finaceiroEntrada.setDataBaixa(dataSistemaDate);
+				finaceiroEntrada.setFkVenda(fkVenda);
+				finaceiroEntrada.setValor(valor);
+				financeiroEntradas.save(finaceiroEntrada);
+			}
+			else{
+				System.out.println("dentro");
+				for(int contador=1;contador<=parcela;contador++){
+					FinanceiroEntrada finaceiroEntradaLoop = new FinanceiroEntrada();
+					Calendar c = Calendar.getInstance();
+					c.setTime(dataSistemaDate);
+					c.set(Calendar.MONTH,c.get(Calendar.MONTH)+contador);
+					System.out.println(new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
+					finaceiroEntradaLoop.setDataEmissao(dataSistemaDate);
+					finaceiroEntradaLoop.setDataVencimento(c.getTime());
+					finaceiroEntradaLoop.setFkVenda(fkVenda);
+					finaceiroEntradaLoop.setValor(valor);
+					financeiroEntradas.save(finaceiroEntradaLoop);
+
+				}
+			}
 		
+			
+		
+	
 		return ResponseEntity.ok(HttpStatus.OK);
 
 		

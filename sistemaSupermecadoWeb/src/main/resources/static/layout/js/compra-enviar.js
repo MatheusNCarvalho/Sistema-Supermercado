@@ -5,14 +5,9 @@ $(function() {
         var pegarTamanhoArray=$('#tamanhoArray').val();
         let divCarinho = document.querySelector(".carrinho");
         let divNomeProduto = document.querySelector(".produto");
-        let msg=0;
-        let val = $('#nomeProduto').val();
-        let id = $('#produtos option').filter(function() {
-            return this.value == val;
-        }).data('id');
-        msg = id;
-        
-        if( pegarTamanhoArray ==""|| msg==undefined){
+        let valoresCompra= $('.bw-tabela-venda-campo-valor').val()
+        alert(valoresCompra)
+        if( valoresCompra ==""||valoresCompra==null){
         	//$('.tab-content').html('Tem certeza que deseja excluir o título <strong>');
         	divCarinho.classList.add("has-error");
         	divNomeProduto.classList.add("has-error");
@@ -33,10 +28,10 @@ $(function() {
 			            return this.value == vals;
 			        }).data('fornecedor');
         			
-			        var fornecedorId = fornecedor ? '' + fornecedor : 'No Match';;
+			        var fornecedorId = fornecedor ? '' + fornecedor : 'Match';;
 			        
 			        
-			        if(fornecedorId == undefined ){
+			        if(fornecedorId == 'Match' ){
 			        	
 			        	divNomeProduto.classList.add("has-error");
 			        }
@@ -57,8 +52,7 @@ $(function() {
 				        		obj['f'+cot]= $('.produtoId.'+count).val()      		
 				        	}
 				     		cot++;
-				        }
-				        
+				        }				        
 						$.ajax({
 							type : "POST",
 							contentType : "application/json",
