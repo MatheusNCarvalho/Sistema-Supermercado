@@ -1,6 +1,7 @@
 function validarFornecedor() {
 	let	formulario = document.forms['formularioFornecedor'];
 	let	formularioOk = true;
+	let elementoOk = true;
 	
 	let	divNome = document.querySelector(".nome");
 	let	nome = formulario.nome.value;
@@ -31,7 +32,7 @@ function validarFornecedor() {
 
 	if (nome == "" || nome == undefined) {
 
-		formularioOK = false;
+		elementoOk = false;
 		divNome.classList.add("has-error");
 		$('.mensagemErroInput')
 		.append( '<div class="alert alert-danger" >'+
@@ -45,14 +46,14 @@ function validarFornecedor() {
 
 
 	} else {
-		formularioOK = true;
+		elementoOk = true;
 		divNome.classList.remove("has-error");
 		$('.mensagemErroInput').remove();
 	}
 	
 	if (cnpj == "" || cnpj == undefined) {
 
-		formularioOK = false;
+		elementoOk = false;
 		divCnpj.classList.add("has-error");
 		$('.mensagemErroInput')
 		.append('<div class="alert alert-danger" >'+
@@ -63,14 +64,14 @@ function validarFornecedor() {
 
 
 	} else {
-		formularioOK = true;
+		elementoOk = true;
 		divCnpj.classList.remove("has-error");
 		$('.mensagemErroInput').remove();
 	}
 	
 	if (telefone == "" || telefone == undefined) {
 
-		formularioOK = false;
+		elementoOk = false;
 		divTelefone.classList.add("has-error");
 		$('.mensagemErroInput')
 		.append('<div class="alert alert-danger" >'+
@@ -81,14 +82,14 @@ function validarFornecedor() {
 
 
 	} else {
-		formularioOK = true;
+		elementoOk = true;
 		divTelefone.classList.remove("has-error");
 		$('.mensagemErroInput').remove();
 	}
 	
 	if (logradouro == "" || logradouro == undefined) {
 
-		formularioOK = false;
+		elementoOk = false;
 		divLogradouro.classList.add("has-error");
 		$('.mensagemErroInput')
 		.append('<div class="alert alert-danger" >'+
@@ -99,14 +100,14 @@ function validarFornecedor() {
 
 
 	} else {
-		formularioOK = true;
+		elementoOk = true;
 		divLogradouro.classList.remove("has-error");
 		$('.mensagemErroInput').remove();
 	}
 	
 	if (bairro == "" || bairro == undefined) {
 
-		formularioOK = false;
+		elementoOk = false;
 		divBairro.classList.add("has-error");
 		$('.mensagemErroInput')
 		.append('<div class="alert alert-danger" >'+
@@ -117,14 +118,14 @@ function validarFornecedor() {
 
 
 	} else {
-		formularioOK = true;
+		elementoOk = true;
 		divBairro.classList.remove("has-error");
 		$('.mensagemErroInput').remove();
 	}
 	
 	if (cidade == "" || cidade == undefined) {
 
-		formularioOK = false;
+		elementoOk = false;
 		divCidade.classList.add("has-error");
 		$('.mensagemErroInput')
 		.append('<div class="alert alert-danger" >'+
@@ -135,14 +136,14 @@ function validarFornecedor() {
 
 
 	} else {
-		formularioOK = true;
+		elementoOk = true;
 		divCidade.classList.remove("has-error");
 		$('.mensagemErroInput').remove();
 	}
 	
 	if (estado == "" || estado == undefined) {
 
-		formularioOK = false;
+		elementoOk = false;
 		divEstado.classList.add("has-error");
 		$('.mensagemErroInput')
 		.append('<div class="alert alert-danger" >'+
@@ -153,14 +154,14 @@ function validarFornecedor() {
 
 
 	} else {
-		formularioOK = true;
+		elementoOk = true;
 		divEstado.classList.remove("has-error");
 		$('.mensagemErroInput').remove();
 	}
 	
 	if (pais == "" || pais == undefined) {
 
-		formularioOK = false;
+		elementoOk = false;
 		divPais.classList.add("has-error");
 		$('.mensagemErroInput')
 		.append('<div class="alert alert-danger" >'+
@@ -171,14 +172,14 @@ function validarFornecedor() {
 
 
 	} else {
-		formularioOK = true;
+		elementoOk = true;
 		divPais.classList.remove("has-error");
 		$('.mensagemErroInput').remove();
 	}
 	
 	if (cep == "" || cep == undefined) {
 
-		formularioOK = false;
+		elementoOk = false;
 		divCep.classList.add("has-error");
 		$('.mensagemErroInput')
 		.append('<div class="alert alert-danger" >'+
@@ -189,12 +190,16 @@ function validarFornecedor() {
 
 
 	} else {
-		formularioOK = true;
+		elementoOk = true;
 		divCep.classList.remove("has-error");
 		$('.mensagemErroInput').remove();
 	}
 	
-
+	if(elementoOk)
+		formularioOk = true;
+	else
+		formularioOk = false;
+	
 	if (formularioOK)
 		return true;
 	else
