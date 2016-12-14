@@ -20,8 +20,10 @@ $( document ).ready(function() {
 	if (valorSaldoCaixa==""||valorSaldoCaixa==null){
 		valorSaldoCaixa=0;
 	}
+	let valor = $('#valorRetirado').val();
 	let total = parseFloat(valorCaixaInicial)+parseFloat(valorSaldoCaixa);
-	$('.aw-box__value.valor_caixa').replaceWith('<div class="aw-box__value valor_caixa">R$'+total.toFixed(2)+'</div>');
+	$('#retirado').replaceWith('<div class="aw-box__value valor_caixa" id="retirado" >R$'+parseFloat(valor).toFixed(2)+'</div>');
+	$('#total').replaceWith('<div class="aw-box__value valor_caixa" id="total" >R$'+total.toFixed(2)+'</div>');
 });
 
 $(document).on('keyup','input[type=text][name=qtd]', function() {

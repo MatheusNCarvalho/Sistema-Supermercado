@@ -12,6 +12,7 @@
 
 <section layout:fragment="conteudo">
 <input th:value="${valorSaldoCaixa}" type="hidden" id="valorSaldoCaixa" ></input>
+<input th:value="${retirada}" type="hidden" id="valorRetirado" ></input>
 <input th:value="${valorDoCaixa}" type="hidden" id="valorDoCaixa" ></input>
  <input th:value="${condicao}" id="verificarCondicao" type="hidden"  />
  	<a data-toggle="modal" data-target="#abrirCaixaModal"></a>
@@ -32,10 +33,12 @@
 						<a class="btn fexa" data-toggle="modal" data-target="#modalMovimentoCaixa" th:attr="data-nomemodal='Fechar Caixa'"
 
 							><button type="button" class="form-control btn btn-danger">Fechar Caixa</button></a>
-						<a class="btn fexa" data-toggle="modal" data-target="#modalMovimentoCaixa" th:attr="data-nomemodal='Retirar dinheiro'"
+						<a class="btn fexa" data-toggle="modal" data-target="#modalMovimentoCaixa" th:attr="data-nomemodal='Retirar dinheiro', data-url='retirar'"
+						
 
 							><button type="button" class="form-control btn btn-default">Retirar R$</button></a>
-							<a class="btn fexa" data-toggle="modal" data-target="#modalMovimentoCaixa" th:attr="data-nomemodal='Adicionar dinheiro'"
+							<a class="btn fexa" data-toggle="modal" data-target="#modalMovimentoCaixa" th:attr="data-nomemodal='Adicionar dinheiro', data-url='adicionar'"
+				
 
 							><button type="button" class="form-control btn btn-primary">Adicionar R$</button></a>
 	
@@ -48,8 +51,8 @@
 						<div class="aw-box__icon">
 							<i class="fa  fa-usd  fa-3x"></i>
 						</div>
-						<div class="aw-box__value valor_retirado">R$0,00</div>
-						<div class="aw-box__title">Retirada do caixa</div>
+						<div class="aw-box__value" id="retirado" >R$0,00</div>
+						<div class="aw-box__title" >Retirada do caixa</div>
 					</div>
 				</div>
 				
@@ -59,7 +62,7 @@
 							<i class="fa  fa-usd  fa-3x"></i>
 						</div>
 						
-						<div class="aw-box__value valor_caixa">R$0,00</div>
+						<div class="aw-box__value valor_caixa" id="total" >R$0,00</div>
 						<div class="aw-box__title">Saldo do caixa</div>
 					</div>
 				</div>

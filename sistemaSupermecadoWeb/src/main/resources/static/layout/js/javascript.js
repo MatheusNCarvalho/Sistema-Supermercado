@@ -17,15 +17,37 @@ $('#confirmacaoExclusaoModal').on('show.bs.modal', function(event) {
 $('#modalMovimentoCaixa').on('show.bs.modal',function(event){
 	let button = $(event.relatedTarget);
 	let nomeModal = button.data('nomemodal');
-	$('.modal-title.caixa').html('<strong>'+nomeModal+'</strong>')
+	$('.modal-title.caixa').html('<strong>'+nomeModal+'</strong>');
+	$('#enviarMovimentoCaixa').on('click',function(e) {
+	     e.preventDefault();
+	     let url = button.data('url');
+			 let enviar={
+					 "valor" : $('#valorMovimento').val(),
+			 }
+		 $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "/movimentos/"+url,
+			data : JSON.stringify(enviar),
+			dataType : 'json',
+			success : function(data) {
+				// funcoes para que apos adicionar uma nova option no select fechar o modal
+				$('#modalMovimentoCaixa').modal('hide');
+				$('#modalMovimentoCaixa').hide();
+				$('.modal-backdrop').hide();
+				$("body").removeClass("modal-open")
+			},
+			error : function(e) {
+			console.log("ERROR: ", e);
+			}
+		 })
+		});
 	
 
 	
 });
 $('#modalMovimentoCaixa').on('hidden.bs.modal',function(event){
 	$('body').css("paddingRight","0px")
-
-	
 });
 
 
