@@ -22,23 +22,23 @@
 
 		</div>
 		<div class="container-fluid">
-			<form method="POST" class="form-vertical  js-form-loading"
-				onsubmit="return validaFormCadProduto()" action="/produtos"
-				th:object="${produto}">
+			<form method="POST" class="form-vertical  js-form-loading" name="formularioProduto"
+				 action="/produtos" th:object="${produto}" onsubmit="return validarProdutos()">
+				 <div class="mensagemErroInput"></div>
 				 	<div layout:include="layout/fragments/MensagemGeral"></div>
     				<div layout:include="layout/fragments/MensagemErro"></div>
 				<input type="hidden" th:field="*{id}" />
 				<input type="hidden" th:field="*{valorUnitario}" />
 				<input type="hidden" th:field="*{qtdEstoque}" />
 		
-				<div class="form-group"
+				<div class="form-group codigoBarras"
 					th:classappend="${#fields.hasErrors('codigoBarras')} ? has-error">
 					<label for="input-produto-codigo">Codigo de Barras</label> <input
 						id="input-produto-codigo" type="text" class="form-control"
 						th:field="*{codigoBarras}" />
 				</div>
 
-				<div class="form-group"
+				<div class="form-group nome"
 					th:classappend="${#fields.hasErrors('nome')} ? has-error">
 					<label for="input-produto-nome">Nome</label> <input
 						id="input-produto-nome" type="text" class="form-control"
@@ -48,7 +48,7 @@
 				<div class="form-group row"
 					th:classappend="${#fields.hasErrors('tipoMedida')} ? has-error">
 
-					<div class="col-sm-3">
+					<div class="col-sm-3 medida ">
 						<label for="input-produto-medida">Medida</label> <select
 							class="form-control" id="input-produto-medida" name="tipoMedida" th:field="*{tipoMedida}">
 							<option value="0"></option>
@@ -59,7 +59,8 @@
 
 
 
-					<div th:classappend="${#fields.hasErrors('qtdMedida')} ? has-error">
+					<div class="qtdMedida"
+					 th:classappend="${#fields.hasErrors('qtdMedida')} ? has-error">
 						<div class="col-sm-3">
 							<label for="input-produto-qtdMedida">Quantidade Medida</label> <input
 								class="form-control" id="input-produto-qtdMedida" type="text"
@@ -67,15 +68,15 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group row">
-					<div th:classappend="${#fields.hasErrors('qtdMaxima')} ? has-error">
+				<div class="form-group row ">
+					<div class="qtdEstoqueMaximo" th:classappend="${#fields.hasErrors('qtdMaxima')} ? has-error">
 						<div class="col-sm-3">
 							<label for="input-produto-maximo">Quantidade Estoque
 								Maximo</label> <input class="form-control" id="input-produto-maximo"
 								type="text" th:field="*{qtdMaxima}" />
 						</div>
 					</div>
-					<div th:classappend="${#fields.hasErrors('qtdMinimo')} ? has-error">
+					<div class="qtdEstoqueMinimo" th:classappend="${#fields.hasErrors('qtdMinimo')} ? has-error">
 						<div class="col-sm-3 ">
 							<label for="input-produto-minimo">Quantidade Estoque
 								Minimo</label> <input class="form-control" id="input-produto-minimo"
@@ -85,7 +86,7 @@
 				</div>
 				<div class="form-group row">
 
-					<div
+					<div class="categoria"
 						th:classappend="${#fields.hasErrors('idCategoria')} ? has-error">
 
 						<div class="col-sm-3 refresh">
@@ -125,8 +126,8 @@
 	</section>
 	<th:block layout:fragment="javascript-extra">
 			<script th:src="@{/layout/js/estilo.cadastro-rapido.js}"></script> 
-	
+	<script th:src="@{/layout/js/ValidacaoProdutos.js}"></script>
 	</th:block>
-	
+		
 </body>
 </html>

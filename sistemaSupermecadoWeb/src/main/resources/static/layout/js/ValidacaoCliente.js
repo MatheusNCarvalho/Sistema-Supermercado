@@ -1,6 +1,7 @@
 function validarCliente() {
 	let	formulario = document.forms['formularioCliente'];
 	let	formularioOk = true;
+	let elementoOk = true;
 	
 	let	divNome = document.querySelector(".nome");
 	let	nome = formulario.nome.value;
@@ -31,7 +32,7 @@ function validarCliente() {
 
 	if (nome == "" || nome == undefined) {
 
-		formularioOK = false;
+		elementoOK = false;
 		divNome.classList.add("has-error");
 		$('.mensagemErroInput')
 		.append( '<div class="alert alert-danger" >'+
@@ -45,14 +46,14 @@ function validarCliente() {
 
 
 	} else {
-		formularioOK = true;
+		elementoOK = true;
 		divNome.classList.remove("has-error");
 		$('.mensagemErroInput').remove();
 	}
 	
 	if (cpf == "" || cpf == undefined) {
 
-		formularioOK = false;
+		elementoOK = false;
 		divCpf.classList.add("has-error");
 		$('.mensagemErroInput')
 		.append('<div class="alert alert-danger" >'+
@@ -63,14 +64,14 @@ function validarCliente() {
 
 
 	} else {
-		formularioOK = true;
+		elementooOK = true;
 		divCpf.classList.remove("has-error");
 		$('.mensagemErroInput').remove();
 	}
 	
 	if (telefone == "" || telefone == undefined) {
 
-		formularioOK = false;
+		elementoOK = false;
 		divTelefone.classList.add("has-error");
 		$('.mensagemErroInput')
 		.append('<div class="alert alert-danger" >'+
@@ -81,14 +82,14 @@ function validarCliente() {
 
 
 	} else {
-		formularioOK = true;
+		elementoOK = true;
 		divTelefone.classList.remove("has-error");
 		$('.mensagemErroInput').remove();
 	}
 	
 	if (logradouro == "" || logradouro == undefined) {
 
-		formularioOK = false;
+		elementoOK = false;
 		divLogradouro.classList.add("has-error");
 		$('.mensagemErroInput')
 		.append('<div class="alert alert-danger" >'+
@@ -99,14 +100,14 @@ function validarCliente() {
 
 
 	} else {
-		formularioOK = true;
+		elementoOK = true;
 		divLogradouro.classList.remove("has-error");
 		$('.mensagemErroInput').remove();
 	}
 	
 	if (bairro == "" || bairro == undefined) {
 
-		formularioOK = false;
+		elementoOK = false;
 		divBairro.classList.add("has-error");
 		$('.mensagemErroInput')
 		.append('<div class="alert alert-danger" >'+
@@ -117,14 +118,14 @@ function validarCliente() {
 
 
 	} else {
-		formularioOK = true;
+		elementoOK = true;
 		divBairro.classList.remove("has-error");
 		$('.mensagemErroInput').remove();
 	}
 	
 	if (cidade == "" || cidade == undefined) {
 
-		formularioOK = false;
+		elementoOK = false;
 		divCidade.classList.add("has-error");
 		$('.mensagemErroInput')
 		.append('<div class="alert alert-danger" >'+
@@ -135,14 +136,14 @@ function validarCliente() {
 
 
 	} else {
-		formularioOK = true;
+		elementoOK = true;
 		divCidade.classList.remove("has-error");
 		$('.mensagemErroInput').remove();
 	}
 	
 	if (estado == "" || estado == undefined) {
 
-		formularioOK = false;
+		elementoOK = false;
 		divEstado.classList.add("has-error");
 		$('.mensagemErroInput')
 		.append('<div class="alert alert-danger" >'+
@@ -153,14 +154,14 @@ function validarCliente() {
 
 
 	} else {
-		formularioOK = true;
+		elementoOK = true;
 		divEstado.classList.remove("has-error");
 		$('.mensagemErroInput').remove();
 	}
 	
 	if (pais == "" || pais == undefined) {
 
-		formularioOK = false;
+		elementoOK = false;
 		divPais.classList.add("has-error");
 		$('.mensagemErroInput')
 		.append('<div class="alert alert-danger" >'+
@@ -171,14 +172,14 @@ function validarCliente() {
 
 
 	} else {
-		formularioOK = true;
+		elementoOK = true;
 		divPais.classList.remove("has-error");
 		$('.mensagemErroInput').remove();
 	}
 	
 	if (cep == "" || cep == undefined) {
 
-		formularioOK = false;
+		elementoOK = false;
 		divCep.classList.add("has-error");
 		$('.mensagemErroInput')
 		.append('<div class="alert alert-danger" >'+
@@ -189,11 +190,15 @@ function validarCliente() {
 
 
 	} else {
-		formularioOK = true;
+		elementoOK = true;
 		divCep.classList.remove("has-error");
 		$('.mensagemErroInput').remove();
 	}
-	
+	if(elementoOK){
+		formularioOk = true;
+	}else{
+		formularioOK = false;
+	}
 
 	if (formularioOK)
 		return true;
