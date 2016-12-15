@@ -73,23 +73,23 @@ public class VendaController {
 		if (aberturas.find(teste)>fechamentos.find(teste)){
 			condicao=false;
 			mv.addObject("valorSaldoCaixa",vendas.selectTotalVendas(teste, aberturas.findId(teste)));
-
+			Double removido= movimentos.selectMovimentoRetirada(aberturas.find(teste));
+			Double adicionado=movimentos.selectMovimentoAdicionado(aberturas.find(teste));
+			if (removido==null){
+				removido=0.00;
+			}
+			if(adicionado==null){
+				adicionado=0.00;
+			}
+			Double saldoParcial=vendas.selectSaldoCaixa(teste);
+			System.out.println("Adicionado:"+adicionado);
+			System.out.println("Removido:"+removido);
+			System.out.println("Saldo Parcial:"+saldoParcial);
+			Double TotalCaixa=saldoParcial-removido+adicionado;
+			mv.addObject("valorDoCaixa",TotalCaixa);
+			mv.addObject("retirada",removido);
 		}
-		Double removido= movimentos.selectMovimentoRetirada(aberturas.find(teste));
-		Double adicionado=movimentos.selectMovimentoAdicionado(aberturas.find(teste));
-		if (removido==null){
-			removido=0.00;
-		}
-		if(adicionado==null){
-			adicionado=0.00;
-		}
-		Double saldoParcial=vendas.selectSaldoCaixa(teste);
-		System.out.println("Adicionado:"+adicionado);
-		System.out.println("Removido:"+removido);
-		System.out.println("Saldo Parcial:"+saldoParcial);
-		Double TotalCaixa=saldoParcial-removido+adicionado;
-		mv.addObject("valorDoCaixa",TotalCaixa);
-		mv.addObject("retirada",removido);
+		
 		mv.addObject("condicao",condicao);
 		System.out.println("Precisa Abrir Modal"+condicao);
 		return mv;

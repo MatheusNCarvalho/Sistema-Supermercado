@@ -30,7 +30,7 @@
 		<form method="POST" th:object="${compra}" th:action="@{/compras/nova}">
 		<div class="row" style="clear: both">
 				<div class="col-lg-12">
-						<a class="btn fexa" data-toggle="modal" data-target="#modalMovimentoCaixa" th:attr="data-nomemodal='Fechar Caixa'"
+						<a class="btn fexa" data-toggle="modal" data-target="#fecharCaixaModal"
 
 							><button type="button" class="form-control btn btn-danger">Fechar Caixa</button></a>
 						<a class="btn fexa" data-toggle="modal" data-target="#modalMovimentoCaixa" th:attr="data-nomemodal='Retirar dinheiro', data-url='retirar'"
@@ -176,6 +176,7 @@
 					<div layout:include="caixa/ModalAbrirCaixa"></div>	
 					<div layout:include="caixa/ModalFormaPagamento"></div>	
 										<div layout:include="caixa/ModalCaixa"></div>		
+										<div layout:include="caixa/ModalFecharCaixa"></div>		
 						
 						
 		

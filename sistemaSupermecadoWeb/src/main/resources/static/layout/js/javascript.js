@@ -20,9 +20,15 @@ $('#modalMovimentoCaixa').on('show.bs.modal',function(event){
 	$('.modal-title.caixa').html('<strong>'+nomeModal+'</strong>');
 	$('#enviarMovimentoCaixa').on('click',function(e) {
 	     e.preventDefault();
-	     let url = button.data('url');
+	     let valor = $('#valorMovimento').val();
+	     if(valor<0){
+	    	 $('.js-mensagem-cadastro-rapido-estilo').removeClass('hidden');
+			 $('.js-mensagem-cadastro-rapido-estilo').html('<span> O valor informado deve ser positivo!</span>');
+	     }
+	     else{
+	    	 let url = button.data('url');
 			 let enviar={
-					 "valor" : $('#valorMovimento').val(),
+					 "valor" : valor,
 			 }
 		 $.ajax({
 			type : "POST",
@@ -31,16 +37,14 @@ $('#modalMovimentoCaixa').on('show.bs.modal',function(event){
 			data : JSON.stringify(enviar),
 			dataType : 'json',
 			success : function(data) {
-				// funcoes para que apos adicionar uma nova option no select fechar o modal
-				$('#modalMovimentoCaixa').modal('hide');
-				$('#modalMovimentoCaixa').hide();
-				$('.modal-backdrop').hide();
-				$("body").removeClass("modal-open")
+				location.reload();
 			},
 			error : function(e) {
 			console.log("ERROR: ", e);
 			}
 		 })
+	     }
+	    
 		});
 	
 

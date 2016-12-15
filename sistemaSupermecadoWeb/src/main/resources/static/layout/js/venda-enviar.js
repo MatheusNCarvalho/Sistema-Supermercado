@@ -9,26 +9,60 @@ $(function() {
 $(function() {
 	 $('#enviarValorInicial').on('click',function(e) {
 	     e.preventDefault();
-		 let enviar={
-				 "saldo" : $("#saldoInicial").val(),
-		 }
-		 $.ajax({
-			type : "POST",
-			contentType : "application/json",
-			url : "/aberturas",
-			data : JSON.stringify(enviar),
-			dataType : 'json',
-			success : function(data) {
-				// funcoes para que apos adicionar uma nova option no select fechar o modal
-				$('#abrirCaixaModal').modal('hide');
-				$('#abrirCaixaModal').hide();
-				$('.modal-backdrop').hide();
-				$("body").removeClass("modal-open")
-			},
-			error : function(e) {
-			console.log("ERROR: ", e);
-			}
-		 })
+	     let valor =$("#saldoInicial").val();
+	     if (valor<0){
+	    	 $('.js-mensagem-cadastro-rapido-estilo').removeClass('hidden');
+			 $('.js-mensagem-cadastro-rapido-estilo').html('<span> O valor informado deve ser positivo!</span>');
+	     }
+	     else{
+	    	 let enviar={
+					 "saldo" : valor,
+			 }
+			 $.ajax({
+				type : "POST",
+				contentType : "application/json",
+				url : "/aberturas",
+				data : JSON.stringify(enviar),
+				dataType : 'json',
+				success : function(data) {
+					location.reload();
+				},
+				error : function(e) {
+				console.log("ERROR: ", e);
+				}
+			 }) 
+	     }
+		});
+});
+$(function() {
+	 $('#enviarValorFechamento').on('click',function(e) {
+	     e.preventDefault();
+	     let valorFinal=parseFloat($("#saldoFinal").val()).toFixed(2);
+	     let valorCaixa=parseFloat($('#valorDoCaixa').val()).toFixed(2);
+	     console.log(valorFinal);
+	     console.log(valorCaixa);
+	     if (valorCaixa!=valorFinal){
+				$('.js-mensagem-cadastro-rapido-estilo').removeClass('hidden');
+				$('.js-mensagem-cadastro-rapido-estilo').html('<span> Valor Incorreto o valor deve ser '+valorCaixa+'R$</span>')
+	     }
+	     else{
+	    	 let enviar={
+					 "saldoFinal" : valorFinal,
+			 }
+			 $.ajax({
+				type : "POST",
+				contentType : "application/json",
+				url : "/fechamentos",
+				data : JSON.stringify(enviar),
+				dataType : 'json',
+				success : function(data) {
+					location.reload();
+				},
+				error : function(e) {
+				console.log("ERROR: ", e);
+				}
+			 })
+	     }
 		});
 });
 $(function() {

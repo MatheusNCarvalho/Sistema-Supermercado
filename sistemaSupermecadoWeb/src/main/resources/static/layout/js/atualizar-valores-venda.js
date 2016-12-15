@@ -20,6 +20,9 @@ $( document ).ready(function() {
 	if (valorSaldoCaixa==""||valorSaldoCaixa==null){
 		valorSaldoCaixa=0;
 	}
+	if(valorCaixaInicial==""||valorCaixaInicial==null){
+		valorCaixaInicial=0;
+	}
 	let valor = $('#valorRetirado').val();
 	let total = parseFloat(valorCaixaInicial)+parseFloat(valorSaldoCaixa);
 	$('#retirado').replaceWith('<div class="aw-box__value valor_caixa" id="retirado" >R$'+parseFloat(valor).toFixed(2)+'</div>');

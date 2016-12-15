@@ -35,7 +35,7 @@ public class Abertura {
 	private String funcionario;
 
 	@Column(name = "data_hora")
-	private String dataVenda;
+	private Date dataVenda;
 
 	public BigDecimal getSaldo() {
 		return saldo;
@@ -45,12 +45,12 @@ public class Abertura {
 		this.saldo = saldo;
 	}
 
-	public String getDataVenda() {
+	public Date getDataVenda() {
 		return dataVenda;
 	}
 
-	public void setDataVenda(String dataVenda) {
-		this.dataVenda = dataVenda;
+	public void setDataVenda(Date date) {
+		this.dataVenda = date;
 	}
 
 	public String getFuncionario() {
