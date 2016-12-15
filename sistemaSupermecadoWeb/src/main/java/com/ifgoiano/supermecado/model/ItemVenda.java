@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="vendas_itens")
@@ -38,6 +39,9 @@ public class ItemVenda {
 	
 	@Column(name="fk_produto")
 	private int fkProduto;
+	
+	@Transient
+	private BigDecimal valorTotal;
 
 	public long getIdItem() {
 		return idItem;

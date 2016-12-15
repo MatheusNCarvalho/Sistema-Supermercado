@@ -94,6 +94,19 @@ public class VendaController {
 		System.out.println("Precisa Abrir Modal"+condicao);
 		return mv;
 	}
+	
+	@RequestMapping
+	public ModelAndView pesquisar(){
+		
+		List<Venda> todasVendas = vendas.findAll();
+		//List<Venda> todosValores = vendas.todosValores();
+		
+		ModelAndView mv = new ModelAndView("venda/PesquisaVendas");
+		mv.addObject("todasVendas",todasVendas);
+		//mv.addObject("todosValores",todosValores);
+		return mv;
+	}
+	
 
 	@RequestMapping(value = "/salvar", method = RequestMethod.POST)
 	public ResponseEntity<?> salvar(@RequestBody String i) {

@@ -219,40 +219,21 @@ public class CompraController {
 	@RequestMapping(value="/adicionar",method=RequestMethod.GET)
 	public @ResponseBody String valorRetornar(String codigo) {
 		
-		
-	
-		
 		long i = Long.parseLong(codigo);
-	//	Gson gson = new Gson();
-	//	validarTamanhoNome(codigo);
-		
-		//	String json = gson.toJson(product);
-		//produtos.findByCodigoBarrasContainingIgnoreCase(codigo);
-	List<ItemCompra> itens = is.todasCompra(i);
-	//System.out.print("s"+itens);
-	//	return "ok";
 
-		//ArrayList<String> list = new ArrayList<String>();
+		List<ItemCompra> itens = is.todasCompra(i);
+
 		int cont=0;
 		String ok="";
-		for(ItemCompra compra : itens){
-			//	list.add("categoria="+compra.getProduto().getCodigoBarras());
-				//list.add(compra.getProduto().getNome());
-			//System.out.println("1 "+compra.getProduto().getCodigoBarras());
+		for(ItemCompra compra : itens){		
 				ok+=compra.getProduto().getCodigoBarras()+",";
 				ok+=compra.getProduto().getNome()+",";
 				ok+=compra.getProduto().getCategoria().getNome()+",";
 				ok+=compra.getQtd()+",";
 				ok+=compra.getValorUnitario()+",";	
-				cont++;
-			 
+				cont++;			 
 		}
-		//System.out.println(itens.toString());
-		//String json = gson.toJson(itens);
-		//String json_string = gson.toString();
-		//System.out.println(json_string); 
-		//System.out.println(itens.toString());
-	//	System.out.println(array);
+	
 		return ok+cont;
 	
 	}
