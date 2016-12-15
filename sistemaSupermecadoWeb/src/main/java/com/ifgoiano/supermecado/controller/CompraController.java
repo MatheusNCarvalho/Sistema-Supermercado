@@ -42,7 +42,6 @@ import com.ifgoiano.supermecado.repository.Fechamentos;
 import com.ifgoiano.supermecado.repository.Fornecedores;
 import com.ifgoiano.supermecado.repository.ItemCompras;
 import com.ifgoiano.supermecado.repository.Produtos;
-import com.mysql.fabric.xmlrpc.base.Array;
 import com.ifgoiano.supermecado.repository.Aberturas;
 
 

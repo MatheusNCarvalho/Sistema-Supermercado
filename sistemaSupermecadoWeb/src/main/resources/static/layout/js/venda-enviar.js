@@ -38,12 +38,17 @@ $(function() {
 	 $('#enviarValorFechamento').on('click',function(e) {
 	     e.preventDefault();
 	     let valorFinal=parseFloat($("#saldoFinal").val()).toFixed(2);
+	     let valorSaldoCaixa=parseFloat($("#valorSaldoCaixa").val()).toFixed(2);
 	     let valorCaixa=parseFloat($('#valorDoCaixa').val()).toFixed(2);
+	     if(valorSaldoCaixa==""||valorSaldoCaixa==null){
+	    	 valorSaldoCaixa=0;
+	     }
 	     console.log(valorFinal);
 	     console.log(valorCaixa);
-	     if (valorCaixa!=valorFinal){
+	     let valores=parseFloat(valorCaixa)+parseFloat(valorSaldoCaixa);
+	     if (valores!=valorFinal){
 				$('.js-mensagem-cadastro-rapido-estilo').removeClass('hidden');
-				$('.js-mensagem-cadastro-rapido-estilo').html('<span> Valor Incorreto o valor deve ser '+valorCaixa+'R$</span>')
+				$('.js-mensagem-cadastro-rapido-estilo').html('<span> Valor Incorreto o valor deve ser '+valores+'R$</span>')
 	     }
 	     else{
 	    	 let enviar={
