@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	xmlns:brewer="http://brewer.algaworks.com"
+	layout:decorator="layout/LayoutPadrao"
+>
+
+<div class="modal fade" id="modalMovimentoCaixa" tabindex="-1" th:fragment="modal">
+	<div class="modal-dialog">
+	
+		<form class="form" th:action="@{/aberturas}">
+			
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title caixa"><strong>Abrir Caixa</strong></h4>
+				</div>
+									<div class="alert  alert-danger  hidden  js-mensagem-cadastro-rapido-estilo" role="alert"></div>
+				
+				<div class="modal-body">
+		
+									
+											<div class="form-group">
+											<label for="nome">Valor</label>
+												<input class="form-control"  id="valorMovimento" type="text"
+													name="saldoInicial"/>
+											</div>
+	
+										
+				</div>
+				
+				<div class="modal-footer">
+				<button type="submit" id="enviarMovimentoCaixa" class="btn btn-primary">Enviar</button>
+				<button type="reset" class="btn btn-default">Limpar</button>
+				<button type="button" class="btn btn-danger">Cancelar</button>
+	
+				</div>
+			</div>
+		</form>
+
+	</div>
+</div>		
+</html>
