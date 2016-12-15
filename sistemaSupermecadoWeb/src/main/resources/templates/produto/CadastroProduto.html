@@ -23,7 +23,7 @@
 		</div>
 		<div class="container-fluid">
 			<form method="POST" class="form-vertical  js-form-loading" name="formularioProduto"
-				 action="/produtos" th:object="${produto}" onsubmit="return validarProdutos()">
+				 th:action="@{/produtos}" th:object="${produto}" onsubmit="return validarProdutos()">
 				 <div class="mensagemErroInput"></div>
 				 	<div layout:include="layout/fragments/MensagemGeral"></div>
     				<div layout:include="layout/fragments/MensagemErro"></div>

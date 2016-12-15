@@ -26,7 +26,7 @@
 
 		<div class="container-fluid">
 			
-			<form method="POST" class="form-vertical  js-form-loading" action="/fornecedores" th:object="${fornecedor}" name="formularioFornecedor" onsubmit="return validarFornecedor()" >
+			<form method="POST" class="form-vertical  js-form-loading" th:action="@{/fornecedores}" th:object="${fornecedor}" name="formularioFornecedor" onsubmit="return validarFornecedor()" >
 				<div class="mensagemErroInput"></div>
 				<div layout:include="layout/mensagemGeral">
 				</div>
